@@ -20,9 +20,11 @@ from ...types.not_found_error_body import NotFoundErrorBody
 from ...types.request_timeout_error_body import RequestTimeoutErrorBody
 from ...types.tax_compliance_status import TaxComplianceStatus
 from ...types.tax_compliance_status_paginated_response import TaxComplianceStatusPaginatedResponse
-from ...types.tax_compliance_status_request import TaxComplianceStatusRequest
 from ...types.unauthorized_error_body import UnauthorizedErrorBody
 from ...types.unexpected_error import UnexpectedError
+
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
 
 
 class TaxComplianceStatusClient:
@@ -90,13 +92,20 @@ class TaxComplianceStatusClient:
         *,
         omit: typing.Optional[str] = None,
         fields: typing.Optional[str] = None,
-        request: TaxComplianceStatusRequest,
+        link: str,
+        attach_pdf: typing.Optional[bool] = OMIT,
+        save_data: typing.Optional[bool] = OMIT,
     ) -> TaxComplianceStatus:
+        _request: typing.Dict[str, typing.Any] = {"link": link}
+        if attach_pdf is not OMIT:
+            _request["attach_pdf"] = attach_pdf
+        if save_data is not OMIT:
+            _request["save_data"] = save_data
         _response = httpx.request(
             "POST",
             urllib.parse.urljoin(f"{self._environment.value}/", "api/tax-compliance-status"),
             params={"omit": omit, "fields": fields},
-            json=jsonable_encoder(request),
+            json=jsonable_encoder(_request),
             auth=(self._secret_id, self._secret_password)
             if self._secret_id is not None and self._secret_password is not None
             else None,
@@ -242,14 +251,21 @@ class AsyncTaxComplianceStatusClient:
         *,
         omit: typing.Optional[str] = None,
         fields: typing.Optional[str] = None,
-        request: TaxComplianceStatusRequest,
+        link: str,
+        attach_pdf: typing.Optional[bool] = OMIT,
+        save_data: typing.Optional[bool] = OMIT,
     ) -> TaxComplianceStatus:
+        _request: typing.Dict[str, typing.Any] = {"link": link}
+        if attach_pdf is not OMIT:
+            _request["attach_pdf"] = attach_pdf
+        if save_data is not OMIT:
+            _request["save_data"] = save_data
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
                 urllib.parse.urljoin(f"{self._environment.value}/", "api/tax-compliance-status"),
                 params={"omit": omit, "fields": fields},
-                json=jsonable_encoder(request),
+                json=jsonable_encoder(_request),
                 auth=(self._secret_id, self._secret_password)
                 if self._secret_id is not None and self._secret_password is not None
                 else None,

@@ -21,11 +21,13 @@ from ...types.not_found_error_body import NotFoundErrorBody
 from ...types.patch_body import PatchBody
 from ...types.recurring_expenses import RecurringExpenses
 from ...types.recurring_expenses_paginated_response import RecurringExpensesPaginatedResponse
-from ...types.recurring_expenses_request import RecurringExpensesRequest
 from ...types.request_timeout_error_body import RequestTimeoutErrorBody
 from ...types.token_required_response import TokenRequiredResponse
 from ...types.unauthorized_error_body import UnauthorizedErrorBody
 from ...types.unexpected_error import UnexpectedError
+
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
 
 
 class RecurringExpensesClient:
@@ -87,13 +89,26 @@ class RecurringExpensesClient:
         *,
         omit: typing.Optional[str] = None,
         fields: typing.Optional[str] = None,
-        request: RecurringExpensesRequest,
+        link: str,
+        token: typing.Optional[str] = OMIT,
+        save_data: typing.Optional[bool] = OMIT,
+        date_from: typing.Optional[str] = OMIT,
+        date_to: typing.Optional[str] = OMIT,
     ) -> typing.List[RecurringExpenses]:
+        _request: typing.Dict[str, typing.Any] = {"link": link}
+        if token is not OMIT:
+            _request["token"] = token
+        if save_data is not OMIT:
+            _request["save_data"] = save_data
+        if date_from is not OMIT:
+            _request["date_from"] = date_from
+        if date_to is not OMIT:
+            _request["date_to"] = date_to
         _response = httpx.request(
             "POST",
             urllib.parse.urljoin(f"{self._environment.value}/", "api/recurring-expenses"),
             params={"omit": omit, "fields": fields},
-            json=jsonable_encoder(request),
+            json=jsonable_encoder(_request),
             auth=(self._secret_id, self._secret_password)
             if self._secret_id is not None and self._secret_password is not None
             else None,
@@ -278,14 +293,27 @@ class AsyncRecurringExpensesClient:
         *,
         omit: typing.Optional[str] = None,
         fields: typing.Optional[str] = None,
-        request: RecurringExpensesRequest,
+        link: str,
+        token: typing.Optional[str] = OMIT,
+        save_data: typing.Optional[bool] = OMIT,
+        date_from: typing.Optional[str] = OMIT,
+        date_to: typing.Optional[str] = OMIT,
     ) -> typing.List[RecurringExpenses]:
+        _request: typing.Dict[str, typing.Any] = {"link": link}
+        if token is not OMIT:
+            _request["token"] = token
+        if save_data is not OMIT:
+            _request["save_data"] = save_data
+        if date_from is not OMIT:
+            _request["date_from"] = date_from
+        if date_to is not OMIT:
+            _request["date_to"] = date_to
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
                 urllib.parse.urljoin(f"{self._environment.value}/", "api/recurring-expenses"),
                 params={"omit": omit, "fields": fields},
-                json=jsonable_encoder(request),
+                json=jsonable_encoder(_request),
                 auth=(self._secret_id, self._secret_password)
                 if self._secret_id is not None and self._secret_password is not None
                 else None,

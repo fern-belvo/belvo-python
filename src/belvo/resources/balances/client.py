@@ -19,13 +19,15 @@ from ...errors.unauthorized_error import UnauthorizedError
 from ...types.bad_request_error_body_item import BadRequestErrorBodyItem
 from ...types.balance import Balance
 from ...types.balances_paginated_response import BalancesPaginatedResponse
-from ...types.balances_request import BalancesRequest
 from ...types.not_found_error_body import NotFoundErrorBody
 from ...types.patch_body import PatchBody
 from ...types.request_timeout_error_body import RequestTimeoutErrorBody
 from ...types.token_required_response import TokenRequiredResponse
 from ...types.unauthorized_error_body import UnauthorizedErrorBody
 from ...types.unexpected_error import UnexpectedError
+
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
 
 
 class BalancesClient:
@@ -119,13 +121,29 @@ class BalancesClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def retrieve_balances(
-        self, *, omit: typing.Optional[str] = None, fields: typing.Optional[str] = None, request: BalancesRequest
+        self,
+        *,
+        omit: typing.Optional[str] = None,
+        fields: typing.Optional[str] = None,
+        link: str,
+        account: typing.Optional[str] = OMIT,
+        date_from: str,
+        date_to: str,
+        token: typing.Optional[str] = OMIT,
+        save_data: typing.Optional[bool] = OMIT,
     ) -> typing.List[Balance]:
+        _request: typing.Dict[str, typing.Any] = {"link": link, "date_from": date_from, "date_to": date_to}
+        if account is not OMIT:
+            _request["account"] = account
+        if token is not OMIT:
+            _request["token"] = token
+        if save_data is not OMIT:
+            _request["save_data"] = save_data
         _response = httpx.request(
             "POST",
             urllib.parse.urljoin(f"{self._environment.value}/", "api/balances"),
             params={"omit": omit, "fields": fields},
-            json=jsonable_encoder(request),
+            json=jsonable_encoder(_request),
             auth=(self._secret_id, self._secret_password)
             if self._secret_id is not None and self._secret_password is not None
             else None,
@@ -342,14 +360,30 @@ class AsyncBalancesClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def retrieve_balances(
-        self, *, omit: typing.Optional[str] = None, fields: typing.Optional[str] = None, request: BalancesRequest
+        self,
+        *,
+        omit: typing.Optional[str] = None,
+        fields: typing.Optional[str] = None,
+        link: str,
+        account: typing.Optional[str] = OMIT,
+        date_from: str,
+        date_to: str,
+        token: typing.Optional[str] = OMIT,
+        save_data: typing.Optional[bool] = OMIT,
     ) -> typing.List[Balance]:
+        _request: typing.Dict[str, typing.Any] = {"link": link, "date_from": date_from, "date_to": date_to}
+        if account is not OMIT:
+            _request["account"] = account
+        if token is not OMIT:
+            _request["token"] = token
+        if save_data is not OMIT:
+            _request["save_data"] = save_data
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
                 urllib.parse.urljoin(f"{self._environment.value}/", "api/balances"),
                 params={"omit": omit, "fields": fields},
-                json=jsonable_encoder(request),
+                json=jsonable_encoder(_request),
                 auth=(self._secret_id, self._secret_password)
                 if self._secret_id is not None and self._secret_password is not None
                 else None,

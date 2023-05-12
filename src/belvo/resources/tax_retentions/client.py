@@ -16,13 +16,16 @@ from ...errors.not_found_error import NotFoundError
 from ...errors.request_timeout_error import RequestTimeoutError
 from ...errors.unauthorized_error import UnauthorizedError
 from ...types.bad_request_error_body_item import BadRequestErrorBodyItem
+from ...types.enum_tax_retention_type import EnumTaxRetentionType
 from ...types.not_found_error_body import NotFoundErrorBody
 from ...types.request_timeout_error_body import RequestTimeoutErrorBody
 from ...types.tax_retentions import TaxRetentions
 from ...types.tax_retentions_paginated_response import TaxRetentionsPaginatedResponse
-from ...types.tax_retentions_request import TaxRetentionsRequest
 from ...types.unauthorized_error_body import UnauthorizedErrorBody
 from ...types.unexpected_error import UnexpectedError
+
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
 
 
 class TaxRetentionsClient:
@@ -82,13 +85,32 @@ class TaxRetentionsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def retrieve_tax_retentions(
-        self, *, omit: typing.Optional[str] = None, fields: typing.Optional[str] = None, request: TaxRetentionsRequest
+        self,
+        *,
+        omit: typing.Optional[str] = None,
+        fields: typing.Optional[str] = None,
+        link: str,
+        date_from: str,
+        date_to: str,
+        type: EnumTaxRetentionType,
+        attach_xml: typing.Optional[bool] = OMIT,
+        save_data: typing.Optional[bool] = OMIT,
     ) -> typing.List[TaxRetentions]:
+        _request: typing.Dict[str, typing.Any] = {
+            "link": link,
+            "date_from": date_from,
+            "date_to": date_to,
+            "type": type,
+        }
+        if attach_xml is not OMIT:
+            _request["attach_xml"] = attach_xml
+        if save_data is not OMIT:
+            _request["save_data"] = save_data
         _response = httpx.request(
             "POST",
             urllib.parse.urljoin(f"{self._environment.value}/", "api/tax-retentions"),
             params={"omit": omit, "fields": fields},
-            json=jsonable_encoder(request),
+            json=jsonable_encoder(_request),
             auth=(self._secret_id, self._secret_password)
             if self._secret_id is not None and self._secret_password is not None
             else None,
@@ -226,14 +248,33 @@ class AsyncTaxRetentionsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def retrieve_tax_retentions(
-        self, *, omit: typing.Optional[str] = None, fields: typing.Optional[str] = None, request: TaxRetentionsRequest
+        self,
+        *,
+        omit: typing.Optional[str] = None,
+        fields: typing.Optional[str] = None,
+        link: str,
+        date_from: str,
+        date_to: str,
+        type: EnumTaxRetentionType,
+        attach_xml: typing.Optional[bool] = OMIT,
+        save_data: typing.Optional[bool] = OMIT,
     ) -> typing.List[TaxRetentions]:
+        _request: typing.Dict[str, typing.Any] = {
+            "link": link,
+            "date_from": date_from,
+            "date_to": date_to,
+            "type": type,
+        }
+        if attach_xml is not OMIT:
+            _request["attach_xml"] = attach_xml
+        if save_data is not OMIT:
+            _request["save_data"] = save_data
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
                 urllib.parse.urljoin(f"{self._environment.value}/", "api/tax-retentions"),
                 params={"omit": omit, "fields": fields},
-                json=jsonable_encoder(request),
+                json=jsonable_encoder(_request),
                 auth=(self._secret_id, self._secret_password)
                 if self._secret_id is not None and self._secret_password is not None
                 else None,

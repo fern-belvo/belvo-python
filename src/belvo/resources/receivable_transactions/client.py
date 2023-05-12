@@ -17,12 +17,14 @@ from ...errors.precondition_error import PreconditionError
 from ...errors.unauthorized_error import UnauthorizedError
 from ...types.bad_request_error_body_item import BadRequestErrorBodyItem
 from ...types.not_found_error_body import NotFoundErrorBody
-from ...types.receivable_transaction_request import ReceivableTransactionRequest
 from ...types.receivables_transaction import ReceivablesTransaction
 from ...types.receivables_transactions_paginated_response import ReceivablesTransactionsPaginatedResponse
 from ...types.token_required_response import TokenRequiredResponse
 from ...types.unauthorized_error_body import UnauthorizedErrorBody
 from ...types.unexpected_error import UnexpectedError
+
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
 
 
 class ReceivableTransactionsClient:
@@ -102,13 +104,22 @@ class ReceivableTransactionsClient:
         *,
         omit: typing.Optional[str] = None,
         fields: typing.Optional[str] = None,
-        request: ReceivableTransactionRequest,
+        link: str,
+        date_from: str,
+        date_to: str,
+        token: typing.Optional[str] = OMIT,
+        save_data: typing.Optional[bool] = OMIT,
     ) -> ReceivablesTransaction:
+        _request: typing.Dict[str, typing.Any] = {"link": link, "date_from": date_from, "date_to": date_to}
+        if token is not OMIT:
+            _request["token"] = token
+        if save_data is not OMIT:
+            _request["save_data"] = save_data
         _response = httpx.request(
             "POST",
             urllib.parse.urljoin(f"{self._environment.value}/", "receivables/transactions"),
             params={"omit": omit, "fields": fields},
-            json=jsonable_encoder(request),
+            json=jsonable_encoder(_request),
             auth=(self._secret_id, self._secret_password)
             if self._secret_id is not None and self._secret_password is not None
             else None,
@@ -266,14 +277,23 @@ class AsyncReceivableTransactionsClient:
         *,
         omit: typing.Optional[str] = None,
         fields: typing.Optional[str] = None,
-        request: ReceivableTransactionRequest,
+        link: str,
+        date_from: str,
+        date_to: str,
+        token: typing.Optional[str] = OMIT,
+        save_data: typing.Optional[bool] = OMIT,
     ) -> ReceivablesTransaction:
+        _request: typing.Dict[str, typing.Any] = {"link": link, "date_from": date_from, "date_to": date_to}
+        if token is not OMIT:
+            _request["token"] = token
+        if save_data is not OMIT:
+            _request["save_data"] = save_data
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
                 urllib.parse.urljoin(f"{self._environment.value}/", "receivables/transactions"),
                 params={"omit": omit, "fields": fields},
-                json=jsonable_encoder(request),
+                json=jsonable_encoder(_request),
                 auth=(self._secret_id, self._secret_password)
                 if self._secret_id is not None and self._secret_password is not None
                 else None,

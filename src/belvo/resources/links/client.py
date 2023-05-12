@@ -16,16 +16,17 @@ from ...errors.not_found_error import NotFoundError
 from ...errors.precondition_error import PreconditionError
 from ...errors.unauthorized_error import UnauthorizedError
 from ...types.bad_request_error_body_item import BadRequestErrorBodyItem
-from ...types.change_access_mode import ChangeAccessMode
+from ...types.enum_link_access_mode_request import EnumLinkAccessModeRequest
 from ...types.link import Link
-from ...types.links_put_request import LinksPutRequest
-from ...types.links_request import LinksRequest
 from ...types.not_found_error_body import NotFoundErrorBody
 from ...types.paginated_response_link import PaginatedResponseLink
 from ...types.patch_body_without_save_data import PatchBodyWithoutSaveData
 from ...types.token_required_response import TokenRequiredResponse
 from ...types.unauthorized_error_body import UnauthorizedErrorBody
 from ...types.unexpected_error import UnexpectedError
+
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
 
 
 class LinksClient:
@@ -109,13 +110,55 @@ class LinksClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def register_link(
-        self, *, omit: typing.Optional[str] = None, fields: typing.Optional[str] = None, request: LinksRequest
+        self,
+        *,
+        omit: typing.Optional[str] = None,
+        fields: typing.Optional[str] = None,
+        institution: str,
+        username: str,
+        password: typing.Optional[str] = OMIT,
+        external_id: typing.Optional[str] = OMIT,
+        username_2: typing.Optional[str] = OMIT,
+        username_3: typing.Optional[str] = OMIT,
+        password_2: typing.Optional[str] = OMIT,
+        token: typing.Optional[str] = OMIT,
+        access_mode: typing.Optional[EnumLinkAccessModeRequest] = OMIT,
+        fetch_historical: typing.Optional[bool] = OMIT,
+        credentials_storage: typing.Optional[str] = OMIT,
+        username_type: typing.Optional[str] = OMIT,
+        certificate: typing.Optional[str] = OMIT,
+        private_key: typing.Optional[str] = OMIT,
     ) -> Link:
+        _request: typing.Dict[str, typing.Any] = {"institution": institution, "username": username}
+        if password is not OMIT:
+            _request["password"] = password
+        if external_id is not OMIT:
+            _request["external_id"] = external_id
+        if username_2 is not OMIT:
+            _request["username2"] = username_2
+        if username_3 is not OMIT:
+            _request["username3"] = username_3
+        if password_2 is not OMIT:
+            _request["password2"] = password_2
+        if token is not OMIT:
+            _request["token"] = token
+        if access_mode is not OMIT:
+            _request["access_mode"] = access_mode
+        if fetch_historical is not OMIT:
+            _request["fetch_historical"] = fetch_historical
+        if credentials_storage is not OMIT:
+            _request["credentials_storage"] = credentials_storage
+        if username_type is not OMIT:
+            _request["username_type"] = username_type
+        if certificate is not OMIT:
+            _request["certificate"] = certificate
+        if private_key is not OMIT:
+            _request["private_key"] = private_key
         _response = httpx.request(
             "POST",
             urllib.parse.urljoin(f"{self._environment.value}/", "api/links"),
             params={"omit": omit, "fields": fields},
-            json=jsonable_encoder(request),
+            json=jsonable_encoder(_request),
             auth=(self._secret_id, self._secret_password)
             if self._secret_id is not None and self._secret_password is not None
             else None,
@@ -216,13 +259,29 @@ class LinksClient:
         *,
         omit: typing.Optional[str] = None,
         fields: typing.Optional[str] = None,
-        request: LinksPutRequest,
+        password: str,
+        password_2: typing.Optional[str] = OMIT,
+        token: typing.Optional[str] = OMIT,
+        username_type: typing.Optional[str] = OMIT,
+        certificate: typing.Optional[str] = OMIT,
+        private_key: typing.Optional[str] = OMIT,
     ) -> Link:
+        _request: typing.Dict[str, typing.Any] = {"password": password}
+        if password_2 is not OMIT:
+            _request["password2"] = password_2
+        if token is not OMIT:
+            _request["token"] = token
+        if username_type is not OMIT:
+            _request["username_type"] = username_type
+        if certificate is not OMIT:
+            _request["certificate"] = certificate
+        if private_key is not OMIT:
+            _request["private_key"] = private_key
         _response = httpx.request(
             "PUT",
             urllib.parse.urljoin(f"{self._environment.value}/", f"api/links/{id}"),
             params={"omit": omit, "fields": fields},
-            json=jsonable_encoder(request),
+            json=jsonable_encoder(_request),
             auth=(self._secret_id, self._secret_password)
             if self._secret_id is not None and self._secret_password is not None
             else None,
@@ -260,13 +319,13 @@ class LinksClient:
         *,
         omit: typing.Optional[str] = None,
         fields: typing.Optional[str] = None,
-        request: ChangeAccessMode,
+        access_mode: EnumLinkAccessModeRequest,
     ) -> Link:
         _response = httpx.request(
             "PATCH",
             urllib.parse.urljoin(f"{self._environment.value}/", f"api/links/{id}"),
             params={"omit": omit, "fields": fields},
-            json=jsonable_encoder(request),
+            json=jsonable_encoder({"access_mode": access_mode}),
             auth=(self._secret_id, self._secret_password)
             if self._secret_id is not None and self._secret_password is not None
             else None,
@@ -404,14 +463,56 @@ class AsyncLinksClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def register_link(
-        self, *, omit: typing.Optional[str] = None, fields: typing.Optional[str] = None, request: LinksRequest
+        self,
+        *,
+        omit: typing.Optional[str] = None,
+        fields: typing.Optional[str] = None,
+        institution: str,
+        username: str,
+        password: typing.Optional[str] = OMIT,
+        external_id: typing.Optional[str] = OMIT,
+        username_2: typing.Optional[str] = OMIT,
+        username_3: typing.Optional[str] = OMIT,
+        password_2: typing.Optional[str] = OMIT,
+        token: typing.Optional[str] = OMIT,
+        access_mode: typing.Optional[EnumLinkAccessModeRequest] = OMIT,
+        fetch_historical: typing.Optional[bool] = OMIT,
+        credentials_storage: typing.Optional[str] = OMIT,
+        username_type: typing.Optional[str] = OMIT,
+        certificate: typing.Optional[str] = OMIT,
+        private_key: typing.Optional[str] = OMIT,
     ) -> Link:
+        _request: typing.Dict[str, typing.Any] = {"institution": institution, "username": username}
+        if password is not OMIT:
+            _request["password"] = password
+        if external_id is not OMIT:
+            _request["external_id"] = external_id
+        if username_2 is not OMIT:
+            _request["username2"] = username_2
+        if username_3 is not OMIT:
+            _request["username3"] = username_3
+        if password_2 is not OMIT:
+            _request["password2"] = password_2
+        if token is not OMIT:
+            _request["token"] = token
+        if access_mode is not OMIT:
+            _request["access_mode"] = access_mode
+        if fetch_historical is not OMIT:
+            _request["fetch_historical"] = fetch_historical
+        if credentials_storage is not OMIT:
+            _request["credentials_storage"] = credentials_storage
+        if username_type is not OMIT:
+            _request["username_type"] = username_type
+        if certificate is not OMIT:
+            _request["certificate"] = certificate
+        if private_key is not OMIT:
+            _request["private_key"] = private_key
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
                 urllib.parse.urljoin(f"{self._environment.value}/", "api/links"),
                 params={"omit": omit, "fields": fields},
-                json=jsonable_encoder(request),
+                json=jsonable_encoder(_request),
                 auth=(self._secret_id, self._secret_password)
                 if self._secret_id is not None and self._secret_password is not None
                 else None,
@@ -516,14 +617,30 @@ class AsyncLinksClient:
         *,
         omit: typing.Optional[str] = None,
         fields: typing.Optional[str] = None,
-        request: LinksPutRequest,
+        password: str,
+        password_2: typing.Optional[str] = OMIT,
+        token: typing.Optional[str] = OMIT,
+        username_type: typing.Optional[str] = OMIT,
+        certificate: typing.Optional[str] = OMIT,
+        private_key: typing.Optional[str] = OMIT,
     ) -> Link:
+        _request: typing.Dict[str, typing.Any] = {"password": password}
+        if password_2 is not OMIT:
+            _request["password2"] = password_2
+        if token is not OMIT:
+            _request["token"] = token
+        if username_type is not OMIT:
+            _request["username_type"] = username_type
+        if certificate is not OMIT:
+            _request["certificate"] = certificate
+        if private_key is not OMIT:
+            _request["private_key"] = private_key
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "PUT",
                 urllib.parse.urljoin(f"{self._environment.value}/", f"api/links/{id}"),
                 params={"omit": omit, "fields": fields},
-                json=jsonable_encoder(request),
+                json=jsonable_encoder(_request),
                 auth=(self._secret_id, self._secret_password)
                 if self._secret_id is not None and self._secret_password is not None
                 else None,
@@ -561,14 +678,14 @@ class AsyncLinksClient:
         *,
         omit: typing.Optional[str] = None,
         fields: typing.Optional[str] = None,
-        request: ChangeAccessMode,
+        access_mode: EnumLinkAccessModeRequest,
     ) -> Link:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "PATCH",
                 urllib.parse.urljoin(f"{self._environment.value}/", f"api/links/{id}"),
                 params={"omit": omit, "fields": fields},
-                json=jsonable_encoder(request),
+                json=jsonable_encoder({"access_mode": access_mode}),
                 auth=(self._secret_id, self._secret_password)
                 if self._secret_id is not None and self._secret_password is not None
                 else None,

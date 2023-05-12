@@ -17,15 +17,19 @@ from ...errors.precondition_error import PreconditionError
 from ...errors.request_timeout_error import RequestTimeoutError
 from ...errors.unauthorized_error import UnauthorizedError
 from ...types.bad_request_error_body_item import BadRequestErrorBodyItem
+from ...types.enum_income_minimum_confidence_level_request import EnumIncomeMinimumConfidenceLevelRequest
+from ...types.enum_invoice_allowed_income_types_request import EnumInvoiceAllowedIncomeTypesRequest
 from ...types.income import Income
 from ...types.incomes_paginated_response import IncomesPaginatedResponse
-from ...types.incomes_request import IncomesRequest
 from ...types.not_found_error_body import NotFoundErrorBody
 from ...types.patch_body import PatchBody
 from ...types.request_timeout_error_body import RequestTimeoutErrorBody
 from ...types.token_required_response import TokenRequiredResponse
 from ...types.unauthorized_error_body import UnauthorizedErrorBody
 from ...types.unexpected_error import UnexpectedError
+
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
 
 
 class IncomesClient:
@@ -79,13 +83,36 @@ class IncomesClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def retrieve_income(
-        self, *, omit: typing.Optional[str] = None, fields: typing.Optional[str] = None, request: IncomesRequest
+        self,
+        *,
+        omit: typing.Optional[str] = None,
+        fields: typing.Optional[str] = None,
+        link: str,
+        allowed_income_types: typing.Optional[typing.List[EnumInvoiceAllowedIncomeTypesRequest]] = OMIT,
+        minimum_confidence_level: typing.Optional[EnumIncomeMinimumConfidenceLevelRequest] = OMIT,
+        date_from: typing.Optional[str] = OMIT,
+        date_to: typing.Optional[str] = OMIT,
+        token: typing.Optional[str] = OMIT,
+        save_data: typing.Optional[bool] = OMIT,
     ) -> Income:
+        _request: typing.Dict[str, typing.Any] = {"link": link}
+        if allowed_income_types is not OMIT:
+            _request["allowed_income_types"] = allowed_income_types
+        if minimum_confidence_level is not OMIT:
+            _request["minimum_confidence_level"] = minimum_confidence_level
+        if date_from is not OMIT:
+            _request["date_from"] = date_from
+        if date_to is not OMIT:
+            _request["date_to"] = date_to
+        if token is not OMIT:
+            _request["token"] = token
+        if save_data is not OMIT:
+            _request["save_data"] = save_data
         _response = httpx.request(
             "POST",
             urllib.parse.urljoin(f"{self._environment.value}/", "api/incomes"),
             params={"omit": omit, "fields": fields},
-            json=jsonable_encoder(request),
+            json=jsonable_encoder(_request),
             auth=(self._secret_id, self._secret_password)
             if self._secret_id is not None and self._secret_password is not None
             else None,
@@ -262,14 +289,37 @@ class AsyncIncomesClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def retrieve_income(
-        self, *, omit: typing.Optional[str] = None, fields: typing.Optional[str] = None, request: IncomesRequest
+        self,
+        *,
+        omit: typing.Optional[str] = None,
+        fields: typing.Optional[str] = None,
+        link: str,
+        allowed_income_types: typing.Optional[typing.List[EnumInvoiceAllowedIncomeTypesRequest]] = OMIT,
+        minimum_confidence_level: typing.Optional[EnumIncomeMinimumConfidenceLevelRequest] = OMIT,
+        date_from: typing.Optional[str] = OMIT,
+        date_to: typing.Optional[str] = OMIT,
+        token: typing.Optional[str] = OMIT,
+        save_data: typing.Optional[bool] = OMIT,
     ) -> Income:
+        _request: typing.Dict[str, typing.Any] = {"link": link}
+        if allowed_income_types is not OMIT:
+            _request["allowed_income_types"] = allowed_income_types
+        if minimum_confidence_level is not OMIT:
+            _request["minimum_confidence_level"] = minimum_confidence_level
+        if date_from is not OMIT:
+            _request["date_from"] = date_from
+        if date_to is not OMIT:
+            _request["date_to"] = date_to
+        if token is not OMIT:
+            _request["token"] = token
+        if save_data is not OMIT:
+            _request["save_data"] = save_data
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
                 urllib.parse.urljoin(f"{self._environment.value}/", "api/incomes"),
                 params={"omit": omit, "fields": fields},
-                json=jsonable_encoder(request),
+                json=jsonable_encoder(_request),
                 auth=(self._secret_id, self._secret_password)
                 if self._secret_id is not None and self._secret_password is not None
                 else None,

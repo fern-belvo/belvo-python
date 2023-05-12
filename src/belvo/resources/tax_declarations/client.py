@@ -21,9 +21,11 @@ from ...types.list_tax_declarations_response import ListTaxDeclarationsResponse
 from ...types.not_found_error_body import NotFoundErrorBody
 from ...types.request_timeout_error_body import RequestTimeoutErrorBody
 from ...types.retrieve_tax_declarations_response_item import RetrieveTaxDeclarationsResponseItem
-from ...types.tax_declarations_request import TaxDeclarationsRequest
 from ...types.unauthorized_error_body import UnauthorizedErrorBody
 from ...types.unexpected_error import UnexpectedError
+
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
 
 
 class TaxDeclarationsClient:
@@ -99,13 +101,26 @@ class TaxDeclarationsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def retrieve_tax_declarations(
-        self, *, omit: typing.Optional[str] = None, fields: typing.Optional[str] = None, request: TaxDeclarationsRequest
+        self,
+        *,
+        omit: typing.Optional[str] = None,
+        fields: typing.Optional[str] = None,
+        link: str,
+        year_from: str,
+        year_to: str,
+        attach_pdf: typing.Optional[bool] = OMIT,
+        save_data: typing.Optional[bool] = OMIT,
     ) -> typing.List[RetrieveTaxDeclarationsResponseItem]:
+        _request: typing.Dict[str, typing.Any] = {"link": link, "year_from": year_from, "year_to": year_to}
+        if attach_pdf is not OMIT:
+            _request["attach_pdf"] = attach_pdf
+        if save_data is not OMIT:
+            _request["save_data"] = save_data
         _response = httpx.request(
             "POST",
             urllib.parse.urljoin(f"{self._environment.value}/", "api/tax-declarations"),
             params={"omit": omit, "fields": fields},
-            json=jsonable_encoder(request),
+            json=jsonable_encoder(_request),
             auth=(self._secret_id, self._secret_password)
             if self._secret_id is not None and self._secret_password is not None
             else None,
@@ -259,14 +274,27 @@ class AsyncTaxDeclarationsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def retrieve_tax_declarations(
-        self, *, omit: typing.Optional[str] = None, fields: typing.Optional[str] = None, request: TaxDeclarationsRequest
+        self,
+        *,
+        omit: typing.Optional[str] = None,
+        fields: typing.Optional[str] = None,
+        link: str,
+        year_from: str,
+        year_to: str,
+        attach_pdf: typing.Optional[bool] = OMIT,
+        save_data: typing.Optional[bool] = OMIT,
     ) -> typing.List[RetrieveTaxDeclarationsResponseItem]:
+        _request: typing.Dict[str, typing.Any] = {"link": link, "year_from": year_from, "year_to": year_to}
+        if attach_pdf is not OMIT:
+            _request["attach_pdf"] = attach_pdf
+        if save_data is not OMIT:
+            _request["save_data"] = save_data
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
                 urllib.parse.urljoin(f"{self._environment.value}/", "api/tax-declarations"),
                 params={"omit": omit, "fields": fields},
-                json=jsonable_encoder(request),
+                json=jsonable_encoder(_request),
                 auth=(self._secret_id, self._secret_password)
                 if self._secret_id is not None and self._secret_password is not None
                 else None,

@@ -19,7 +19,6 @@ from .asynchronous_accepted_202 import AsynchronousAccepted202
 from .bad_request_error_body_item import BadRequestErrorBodyItem
 from .balance import Balance
 from .balances_paginated_response import BalancesPaginatedResponse
-from .balances_request import BalancesRequest
 from .bank_account_business_pse import BankAccountBusinessPse
 from .bank_account_details_ofpi import BankAccountDetailsOfpi
 from .bank_account_details_ofpi_pix import BankAccountDetailsOfpiPix
@@ -41,7 +40,6 @@ from .categorization import Categorization
 from .categorization_body import CategorizationBody
 from .categorization_body_request import CategorizationBodyRequest
 from .categorization_merchant_data import CategorizationMerchantData
-from .change_access_mode import ChangeAccessMode
 from .charge import Charge
 from .charge_payment_method_details import ChargePaymentMethodDetails
 from .charge_payment_method_details_ofpi import ChargePaymentMethodDetailsOfpi
@@ -98,7 +96,6 @@ from .employment_record_employment_status_updates import EmploymentRecordEmploym
 from .employment_record_entitlement import EmploymentRecordEntitlement
 from .employment_record_file import EmploymentRecordFile
 from .employment_record_personal_data import EmploymentRecordPersonalData
-from .employment_record_request import EmploymentRecordRequest
 from .employment_record_social_security_summary import EmploymentRecordSocialSecuritySummary
 from .employment_records_paginated_response import EmploymentRecordsPaginatedResponse
 from .enum_account_category import EnumAccountCategory
@@ -183,7 +180,6 @@ from .holder_response_ofpi_information import HolderResponseOfpiInformation
 from .income import Income
 from .income_streams_body import IncomeStreamsBody
 from .incomes_paginated_response import IncomesPaginatedResponse
-from .incomes_request import IncomesRequest
 from .institution import Institution
 from .institution_account import InstitutionAccount
 from .institution_down_error import InstitutionDownError
@@ -219,7 +215,6 @@ from .invoices_payments_sat import InvoicesPaymentsSat
 from .invoices_payroll_dian import InvoicesPayrollDian
 from .invoices_payroll_sat import InvoicesPayrollSat
 from .invoices_receiver_details_dian import InvoicesReceiverDetailsDian
-from .invoices_request import InvoicesRequest
 from .invoices_response_paginated_response import InvoicesResponsePaginatedResponse
 from .invoices_response_paginated_response_results_item import InvoicesResponsePaginatedResponseResultsItem
 from .last_error_invalid_credentials import LastErrorInvalidCredentials
@@ -229,8 +224,6 @@ from .last_error_payment_error import LastErrorPaymentError
 from .last_error_session_expired import LastErrorSessionExpired
 from .last_error_two_factor import LastErrorTwoFactor
 from .link import Link
-from .links_put_request import LinksPutRequest
-from .links_request import LinksRequest
 from .list_payment_links_request_ordering import ListPaymentLinksRequestOrdering
 from .list_payment_links_request_status import ListPaymentLinksRequestStatus
 from .list_tax_declarations_response import ListTaxDeclarationsResponse
@@ -319,7 +312,6 @@ from .payments_way import PaymentsWay
 from .payments_webhooks_paginated_response import PaymentsWebhooksPaginatedResponse
 from .pension_income_statement_individual import PensionIncomeStatementIndividual
 from .providers_pse import ProvidersPse
-from .receivable_transaction_request import ReceivableTransactionRequest
 from .receivables_transaction import ReceivablesTransaction
 from .receivables_transaction_account import ReceivablesTransactionAccount
 from .receivables_transaction_number_of_installments import ReceivablesTransactionNumberOfInstallments
@@ -328,7 +320,6 @@ from .recevables_transaction_fees import RecevablesTransactionFees
 from .recurring_expense_source_transaction import RecurringExpenseSourceTransaction
 from .recurring_expenses import RecurringExpenses
 from .recurring_expenses_paginated_response import RecurringExpensesPaginatedResponse
-from .recurring_expenses_request import RecurringExpensesRequest
 from .reporting_id import ReportingId
 from .request_timeout_error_body import RequestTimeoutErrorBody
 from .retention_breakdown import RetentionBreakdown
@@ -352,17 +343,14 @@ from .tax_assessment_business import TaxAssessmentBusiness
 from .tax_assessment_individual import TaxAssessmentIndividual
 from .tax_compliance_status import TaxComplianceStatus
 from .tax_compliance_status_paginated_response import TaxComplianceStatusPaginatedResponse
-from .tax_compliance_status_request import TaxComplianceStatusRequest
 from .tax_declaration_business import TaxDeclarationBusiness
 from .tax_declaration_business_paginated import TaxDeclarationBusinessPaginated
 from .tax_declaration_individual import TaxDeclarationIndividual
 from .tax_declaration_individual_paginated import TaxDeclarationIndividualPaginated
-from .tax_declarations_request import TaxDeclarationsRequest
 from .tax_payer_information_business import TaxPayerInformationBusiness
 from .tax_payer_information_individual import TaxPayerInformationIndividual
 from .tax_retentions import TaxRetentions
 from .tax_retentions_paginated_response import TaxRetentionsPaginatedResponse
-from .tax_retentions_request import TaxRetentionsRequest
 from .tax_return_business import TaxReturnBusiness
 from .tax_return_business_monthly import TaxReturnBusinessMonthly
 from .tax_return_personal import TaxReturnPersonal
@@ -386,7 +374,6 @@ from .tax_status_paginated_response import TaxStatusPaginatedResponse
 from .tax_status_paginated_response_results_item import TaxStatusPaginatedResponseResultsItem
 from .tax_status_regimens_dian import TaxStatusRegimensDian
 from .tax_status_regimens_sat import TaxStatusRegimensSat
-from .tax_status_request import TaxStatusRequest
 from .tax_status_sat import TaxStatusSat
 from .tax_status_tax_payer_information_dian import TaxStatusTaxPayerInformationDian
 from .tax_status_tax_payer_information_sat import TaxStatusTaxPayerInformationSat
@@ -427,7 +414,6 @@ __all__ = [
     "BadRequestErrorBodyItem",
     "Balance",
     "BalancesPaginatedResponse",
-    "BalancesRequest",
     "BankAccountBusinessPse",
     "BankAccountDetailsOfpi",
     "BankAccountDetailsOfpiPix",
@@ -449,7 +435,6 @@ __all__ = [
     "CategorizationBody",
     "CategorizationBodyRequest",
     "CategorizationMerchantData",
-    "ChangeAccessMode",
     "Charge",
     "ChargePaymentMethodDetails",
     "ChargePaymentMethodDetailsOfpi",
@@ -506,7 +491,6 @@ __all__ = [
     "EmploymentRecordEntitlement",
     "EmploymentRecordFile",
     "EmploymentRecordPersonalData",
-    "EmploymentRecordRequest",
     "EmploymentRecordSocialSecuritySummary",
     "EmploymentRecordsPaginatedResponse",
     "EnumAccountCategory",
@@ -591,7 +575,6 @@ __all__ = [
     "Income",
     "IncomeStreamsBody",
     "IncomesPaginatedResponse",
-    "IncomesRequest",
     "Institution",
     "InstitutionAccount",
     "InstitutionDownError",
@@ -627,7 +610,6 @@ __all__ = [
     "InvoicesPayrollDian",
     "InvoicesPayrollSat",
     "InvoicesReceiverDetailsDian",
-    "InvoicesRequest",
     "InvoicesResponsePaginatedResponse",
     "InvoicesResponsePaginatedResponseResultsItem",
     "LastErrorInvalidCredentials",
@@ -637,8 +619,6 @@ __all__ = [
     "LastErrorSessionExpired",
     "LastErrorTwoFactor",
     "Link",
-    "LinksPutRequest",
-    "LinksRequest",
     "ListPaymentLinksRequestOrdering",
     "ListPaymentLinksRequestStatus",
     "ListTaxDeclarationsResponse",
@@ -725,7 +705,6 @@ __all__ = [
     "PaymentsWebhooksPaginatedResponse",
     "PensionIncomeStatementIndividual",
     "ProvidersPse",
-    "ReceivableTransactionRequest",
     "ReceivablesTransaction",
     "ReceivablesTransactionAccount",
     "ReceivablesTransactionNumberOfInstallments",
@@ -734,7 +713,6 @@ __all__ = [
     "RecurringExpenseSourceTransaction",
     "RecurringExpenses",
     "RecurringExpensesPaginatedResponse",
-    "RecurringExpensesRequest",
     "ReportingId",
     "RequestTimeoutErrorBody",
     "RetentionBreakdown",
@@ -758,17 +736,14 @@ __all__ = [
     "TaxAssessmentIndividual",
     "TaxComplianceStatus",
     "TaxComplianceStatusPaginatedResponse",
-    "TaxComplianceStatusRequest",
     "TaxDeclarationBusiness",
     "TaxDeclarationBusinessPaginated",
     "TaxDeclarationIndividual",
     "TaxDeclarationIndividualPaginated",
-    "TaxDeclarationsRequest",
     "TaxPayerInformationBusiness",
     "TaxPayerInformationIndividual",
     "TaxRetentions",
     "TaxRetentionsPaginatedResponse",
-    "TaxRetentionsRequest",
     "TaxReturnBusiness",
     "TaxReturnBusinessMonthly",
     "TaxReturnPersonal",
@@ -792,7 +767,6 @@ __all__ = [
     "TaxStatusPaginatedResponseResultsItem",
     "TaxStatusRegimensDian",
     "TaxStatusRegimensSat",
-    "TaxStatusRequest",
     "TaxStatusSat",
     "TaxStatusTaxPayerInformationDian",
     "TaxStatusTaxPayerInformationSat",
