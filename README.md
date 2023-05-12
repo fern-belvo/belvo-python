@@ -8,6 +8,14 @@
 
 API documentation is available at [here](https://developers.belvo.com/reference/using-the-api-reference).
 
+## Installation
+
+```bash
+pip install fern-belvo
+# or
+poetry add fern-belvo
+```
+
 ## Usage
 
 ```python
