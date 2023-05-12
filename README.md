@@ -69,6 +69,10 @@ async def get_link() -> None:
 asyncio.run(get_link())
 ```
 
+## Sample app
+
+To play around with the SDK in a full project, check out the [sample app](https://github.com/fern-belvo/belvo-python-sample-app).
+
 ## Beta status
 
 This SDK is in beta, and there may be breaking changes between versions without a major version update. Therefore, we recommend pinning the package version to a specific version in your pyproject.toml file. This way, you can install the same version each time without breaking changes unless you are intentionally looking for the latest version.
