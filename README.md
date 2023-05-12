@@ -1,7 +1,7 @@
 
 # Belvo Python Library
 
-[![pypi](https://img.shields.io/pypi/v/belvo.svg)](https://pypi.python.org/pypi/fern-belvo)
+[![pypi](https://img.shields.io/pypi/v/fern-belvo.svg)](https://pypi.python.org/pypi/fern-belvo)
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-SDK%20generated%20by%20Fern-brightgreen)](https://github.com/fern-api/fern)
 
 ## Documentation
@@ -27,15 +27,15 @@ belvo_client = Belvo(
     secret_password="YOUR_SECRET_PASSWORD",
 )
 
-link = belvo_client.links.register_link({
+link = belvo_client.links.register_link(
     body=belvo.LinksRequest(
         institution="banamex_mx_retail",
         username="username",
         password="password",
         accessMode=belvo.EnumLinkAccessModeRequest.SINGLE,
-        credentialsStorage="30d,
+        credentialsStorage="30d",
     )
-})
+)
 
 print(link)
 ```
