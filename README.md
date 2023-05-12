@@ -1,19 +1,64 @@
 
-# {Company} Python Library
+# Belvo Python Library
 
-[![pypi](https://img.shields.io/pypi/v/{company}.svg)](https://pypi.python.org/pypi/{company})
+[![pypi](https://img.shields.io/pypi/v/belvo.svg)](https://pypi.python.org/pypi/fern-belvo)
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-SDK%20generated%20by%20Fern-brightgreen)](https://github.com/fern-api/fern)
 
 ## Documentation
 
-API documentation is available at <{docs_url}>.
+API documentation is available at [here](https://developers.belvo.com/reference/using-the-api-reference).
 
 ## Usage
 
-Check out the [sample app](.sample-app/app.py) which consumes this SDK!
+```python
+import belvo
+from belvo.client import Belvo
+
+belvo_client = Belvo(
+    secret_id="YOUR_SECRET_ID",
+    secret_password="YOUR_SECRET_PASSWORD",
+)
+
+link = belvo_client.links.register_link({
+    body=belvo.LinksRequest(
+        institution="banamex_mx_retail",
+        username="username",
+        password="password",
+        accessMode=belvo.EnumLinkAccessModeRequest.SINGLE,
+        credentialsStorage="30d,
+    )
+})
+
+print(link)
+```
+
+## Async client
+
+This SDK also includes an async client, which supports the `await` syntax:
 
 ```python
-TODO
+import asyncio
+from belvo.client import AsyncBelvo
+
+belvo_client = AsyncBelvo(
+    secret_id="YOUR_SECRET_ID",
+    secret_password="YOUR_SECRET_PASSWORD",
+)
+
+async def get_link() -> None:
+    link = await belvo_client.links.register_link({
+        body=belvo.LinksRequest(
+            institution="banamex_mx_retail",
+            username="username",
+            password="password",
+            accessMode=belvo.EnumLinkAccessModeRequest.SINGLE,
+            credentialsStorage="30d,
+        )
+    })
+
+    print(link)
+
+asyncio.run(get_link())
 ```
 
 ## Beta status
