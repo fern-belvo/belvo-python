@@ -22,10 +22,10 @@ class InstitutionInactiveError(pydantic.BaseModel):
     )
     message: typing.Optional[str] = pydantic.Field(
         description=(
-            "A short description of the error. \n"
+            "A short description of the error.\n"
             "\n"
             "For `institution_inactive` errors, the description is:\n"
-            "  \n"
+            "\n"
             "  - `The institution has been temporarily deactivated`.\n"
         )
     )

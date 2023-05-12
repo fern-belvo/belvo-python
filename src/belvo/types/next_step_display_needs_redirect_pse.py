@@ -21,7 +21,7 @@ class NextStepDisplayNeedsRedirectPse(pydantic.BaseModel):
     pse_display_needs_redirect: typing.Optional[NeedsRedirectContentPse]
     ready_to_confirm: typing.Optional[bool] = pydantic.Field(
         description=(
-            "Boolean that indicates whether the payment intent is ready to be confirmed. \n"
+            "Boolean that indicates whether the payment intent is ready to be confirmed.\n"
             "\n"
             "  **Note:** When the value is `true`, you'll need to make a PATCH request sending through `confirm: true` to confirm the payment.\n"
         )

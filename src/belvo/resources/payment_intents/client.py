@@ -30,10 +30,12 @@ OMIT = typing.cast(typing.Any, ...)
 
 
 class PaymentIntentsClient:
-    def __init__(self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, username: str, password: str):
+    def __init__(
+        self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, secret_id: str, secret_password: str
+    ):
         self._environment = environment
-        self._username = username
-        self._password = password
+        self._secret_id = secret_id
+        self._secret_password = secret_password
 
     def list_payment_intents(
         self,
@@ -82,8 +84,8 @@ class PaymentIntentsClient:
                 "status": status,
                 "status__in": status_in,
             },
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -104,8 +106,8 @@ class PaymentIntentsClient:
             "POST",
             urllib.parse.urljoin(f"{self._environment.value}/", "payments/payment-intents"),
             json=jsonable_encoder(request),
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -137,8 +139,8 @@ class PaymentIntentsClient:
         _response = httpx.request(
             "GET",
             urllib.parse.urljoin(f"{self._environment.value}/", f"payments/payment-intents/{id}"),
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -166,8 +168,8 @@ class PaymentIntentsClient:
             "PATCH",
             urllib.parse.urljoin(f"{self._environment.value}/", f"payments/payment-intents/{id}"),
             json=jsonable_encoder(_request),
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -187,10 +189,12 @@ class PaymentIntentsClient:
 
 
 class AsyncPaymentIntentsClient:
-    def __init__(self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, username: str, password: str):
+    def __init__(
+        self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, secret_id: str, secret_password: str
+    ):
         self._environment = environment
-        self._username = username
-        self._password = password
+        self._secret_id = secret_id
+        self._secret_password = secret_password
 
     async def list_payment_intents(
         self,
@@ -240,8 +244,8 @@ class AsyncPaymentIntentsClient:
                     "status": status,
                     "status__in": status_in,
                 },
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -263,8 +267,8 @@ class AsyncPaymentIntentsClient:
                 "POST",
                 urllib.parse.urljoin(f"{self._environment.value}/", "payments/payment-intents"),
                 json=jsonable_encoder(request),
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -297,8 +301,8 @@ class AsyncPaymentIntentsClient:
             _response = await _client.request(
                 "GET",
                 urllib.parse.urljoin(f"{self._environment.value}/", f"payments/payment-intents/{id}"),
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -327,8 +331,8 @@ class AsyncPaymentIntentsClient:
                 "PATCH",
                 urllib.parse.urljoin(f"{self._environment.value}/", f"payments/payment-intents/{id}"),
                 json=jsonable_encoder(_request),
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )

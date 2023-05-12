@@ -29,10 +29,12 @@ from ...types.unexpected_error import UnexpectedError
 
 
 class OwnersClient:
-    def __init__(self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, username: str, password: str):
+    def __init__(
+        self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, secret_id: str, secret_password: str
+    ):
         self._environment = environment
-        self._username = username
-        self._password = password
+        self._secret_id = secret_id
+        self._secret_password = secret_password
 
     def list_owners(
         self,
@@ -73,8 +75,8 @@ class OwnersClient:
                 "link": link,
                 "link__in": link_in,
             },
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -98,8 +100,8 @@ class OwnersClient:
             urllib.parse.urljoin(f"{self._environment.value}/", "api/owners"),
             params={"omit": omit, "fields": fields},
             json=jsonable_encoder(request),
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -139,8 +141,8 @@ class OwnersClient:
             urllib.parse.urljoin(f"{self._environment.value}/", "api/owners"),
             params={"omit": omit, "fields": fields},
             json=jsonable_encoder(request),
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -177,8 +179,8 @@ class OwnersClient:
             "GET",
             urllib.parse.urljoin(f"{self._environment.value}/", f"api/owners/{id}"),
             params={"omit": omit, "fields": fields},
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -200,8 +202,8 @@ class OwnersClient:
         _response = httpx.request(
             "DELETE",
             urllib.parse.urljoin(f"{self._environment.value}/", f"api/owners/{id}"),
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -221,10 +223,12 @@ class OwnersClient:
 
 
 class AsyncOwnersClient:
-    def __init__(self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, username: str, password: str):
+    def __init__(
+        self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, secret_id: str, secret_password: str
+    ):
         self._environment = environment
-        self._username = username
-        self._password = password
+        self._secret_id = secret_id
+        self._secret_password = secret_password
 
     async def list_owners(
         self,
@@ -266,8 +270,8 @@ class AsyncOwnersClient:
                     "link": link,
                     "link__in": link_in,
                 },
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -292,8 +296,8 @@ class AsyncOwnersClient:
                 urllib.parse.urljoin(f"{self._environment.value}/", "api/owners"),
                 params={"omit": omit, "fields": fields},
                 json=jsonable_encoder(request),
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -334,8 +338,8 @@ class AsyncOwnersClient:
                 urllib.parse.urljoin(f"{self._environment.value}/", "api/owners"),
                 params={"omit": omit, "fields": fields},
                 json=jsonable_encoder(request),
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -375,8 +379,8 @@ class AsyncOwnersClient:
                 "GET",
                 urllib.parse.urljoin(f"{self._environment.value}/", f"api/owners/{id}"),
                 params={"omit": omit, "fields": fields},
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -399,8 +403,8 @@ class AsyncOwnersClient:
             _response = await _client.request(
                 "DELETE",
                 urllib.parse.urljoin(f"{self._environment.value}/", f"api/owners/{id}"),
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )

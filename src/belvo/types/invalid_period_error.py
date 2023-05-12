@@ -22,10 +22,10 @@ class InvalidPeriodError(pydantic.BaseModel):
     )
     message: typing.Optional[str] = pydantic.Field(
         description=(
-            "A short description of the error. \n"
+            "A short description of the error.\n"
             "\n"
             "For `invalid_period` errors, the description is:\n"
-            "  \n"
+            "\n"
             "  - `The number of days between date_from and date_to must be at least 90 days`.\n"
         )
     )

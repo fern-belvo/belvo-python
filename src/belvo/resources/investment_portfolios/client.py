@@ -27,10 +27,12 @@ from ...types.unexpected_error import UnexpectedError
 
 
 class InvestmentPortfoliosClient:
-    def __init__(self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, username: str, password: str):
+    def __init__(
+        self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, secret_id: str, secret_password: str
+    ):
         self._environment = environment
-        self._username = username
-        self._password = password
+        self._secret_id = secret_id
+        self._secret_password = secret_password
 
     def list_portfolio(
         self,
@@ -63,8 +65,8 @@ class InvestmentPortfoliosClient:
                 "created_at__range": created_at_range,
                 "link__in": link_in,
             },
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -88,8 +90,8 @@ class InvestmentPortfoliosClient:
             urllib.parse.urljoin(f"{self._environment.value}/", "investments/portfolios"),
             params={"omit": omit, "fields": fields},
             json=jsonable_encoder(request),
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -129,8 +131,8 @@ class InvestmentPortfoliosClient:
             urllib.parse.urljoin(f"{self._environment.value}/", "investments/portfolios"),
             params={"omit": omit, "fields": fields},
             json=jsonable_encoder(request),
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -165,8 +167,8 @@ class InvestmentPortfoliosClient:
             "GET",
             urllib.parse.urljoin(f"{self._environment.value}/", f"investments/portfolios/{id}"),
             params={"omit": omit, "fields": fields},
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -188,8 +190,8 @@ class InvestmentPortfoliosClient:
         _response = httpx.request(
             "DELETE",
             urllib.parse.urljoin(f"{self._environment.value}/", f"investments/portfolios/{id}"),
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -209,10 +211,12 @@ class InvestmentPortfoliosClient:
 
 
 class AsyncInvestmentPortfoliosClient:
-    def __init__(self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, username: str, password: str):
+    def __init__(
+        self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, secret_id: str, secret_password: str
+    ):
         self._environment = environment
-        self._username = username
-        self._password = password
+        self._secret_id = secret_id
+        self._secret_password = secret_password
 
     async def list_portfolio(
         self,
@@ -246,8 +250,8 @@ class AsyncInvestmentPortfoliosClient:
                     "created_at__range": created_at_range,
                     "link__in": link_in,
                 },
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -272,8 +276,8 @@ class AsyncInvestmentPortfoliosClient:
                 urllib.parse.urljoin(f"{self._environment.value}/", "investments/portfolios"),
                 params={"omit": omit, "fields": fields},
                 json=jsonable_encoder(request),
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -314,8 +318,8 @@ class AsyncInvestmentPortfoliosClient:
                 urllib.parse.urljoin(f"{self._environment.value}/", "investments/portfolios"),
                 params={"omit": omit, "fields": fields},
                 json=jsonable_encoder(request),
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -351,8 +355,8 @@ class AsyncInvestmentPortfoliosClient:
                 "GET",
                 urllib.parse.urljoin(f"{self._environment.value}/", f"investments/portfolios/{id}"),
                 params={"omit": omit, "fields": fields},
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -375,8 +379,8 @@ class AsyncInvestmentPortfoliosClient:
             _response = await _client.request(
                 "DELETE",
                 urllib.parse.urljoin(f"{self._environment.value}/", f"investments/portfolios/{id}"),
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )

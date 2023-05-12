@@ -22,10 +22,10 @@ class AccessToResourceDenied(pydantic.BaseModel):
     )
     message: typing.Optional[str] = pydantic.Field(
         description=(
-            "A short description of the error. \n"
+            "A short description of the error.\n"
             "\n"
             "For `access_to_resource_denied` errors, the description is:\n"
-            "  \n"
+            "\n"
             "  - `You don't have access to this resource.`.\n"
         )
     )

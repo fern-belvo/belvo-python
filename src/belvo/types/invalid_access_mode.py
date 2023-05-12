@@ -22,10 +22,10 @@ class InvalidAccessMode(pydantic.BaseModel):
     )
     message: typing.Optional[str] = pydantic.Field(
         description=(
-            "A short description of the error. \n"
+            "A short description of the error.\n"
             "\n"
             "For `invalid_access_mode_switch` errors, the description is:\n"
-            "  \n"
+            "\n"
             "  - `This link doesn't have stored credentials hence it can't be switched to recurrent mode\"`.\n"
         )
     )

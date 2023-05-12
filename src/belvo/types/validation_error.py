@@ -26,10 +26,10 @@ class ValidationError(pydantic.BaseModel):
     )
     message: typing.Optional[str] = pydantic.Field(
         description=(
-            "A short description of the error. \n"
+            "A short description of the error.\n"
             "\n"
             "For `session_expired` errors, the description can be (among others):\n"
-            "  \n"
+            "\n"
             "  - `This field is required.`\n"
             "  - `Object with name=narnia does not exist.`\n"
             "  - `This field may not be null.`\n"

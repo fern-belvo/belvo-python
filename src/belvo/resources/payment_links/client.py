@@ -29,10 +29,12 @@ from ...types.unexpected_error import UnexpectedError
 
 
 class PaymentLinksClient:
-    def __init__(self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, username: str, password: str):
+    def __init__(
+        self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, secret_id: str, secret_password: str
+    ):
         self._environment = environment
-        self._username = username
-        self._password = password
+        self._secret_id = secret_id
+        self._secret_password = secret_password
 
     def list_payment_links(
         self,
@@ -65,8 +67,8 @@ class PaymentLinksClient:
                 "ordering": ordering,
                 "search": search,
             },
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -87,8 +89,8 @@ class PaymentLinksClient:
             "POST",
             urllib.parse.urljoin(f"{self._environment.value}/", "payments/payment-links"),
             json=jsonable_encoder(request),
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -120,8 +122,8 @@ class PaymentLinksClient:
         _response = httpx.request(
             "GET",
             urllib.parse.urljoin(f"{self._environment.value}/", f"payments/payment-links/{access_token}"),
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -141,10 +143,12 @@ class PaymentLinksClient:
 
 
 class AsyncPaymentLinksClient:
-    def __init__(self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, username: str, password: str):
+    def __init__(
+        self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, secret_id: str, secret_password: str
+    ):
         self._environment = environment
-        self._username = username
-        self._password = password
+        self._secret_id = secret_id
+        self._secret_password = secret_password
 
     async def list_payment_links(
         self,
@@ -178,8 +182,8 @@ class AsyncPaymentLinksClient:
                     "ordering": ordering,
                     "search": search,
                 },
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -201,8 +205,8 @@ class AsyncPaymentLinksClient:
                 "POST",
                 urllib.parse.urljoin(f"{self._environment.value}/", "payments/payment-links"),
                 json=jsonable_encoder(request),
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -235,8 +239,8 @@ class AsyncPaymentLinksClient:
             _response = await _client.request(
                 "GET",
                 urllib.parse.urljoin(f"{self._environment.value}/", f"payments/payment-links/{access_token}"),
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )

@@ -21,7 +21,7 @@ class NextStepDisplayPaymentMethodInformation(pydantic.BaseModel):
     open_finance_display_payment_method_information: typing.Optional[DisplayPaymentMethodInformationContentOfpi]
     ready_to_confirm: typing.Optional[bool] = pydantic.Field(
         description=(
-            "Boolean that indicates whether the payment intent is ready to be confirmed. \n"
+            "Boolean that indicates whether the payment intent is ready to be confirmed.\n"
             "\n"
             "  **Note:** When set to `true`, you need to confirm the payment by making a PATCH request sending through `confirm: true`.\n"
         )

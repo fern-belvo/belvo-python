@@ -54,7 +54,7 @@ class Institution(pydantic.BaseModel):
             "  - `ACCOUNTS`\n"
             "  - `BALANCES`\n"
             "  - `INCOMES`\n"
-            "  - `INVESTMENTS_PORTFOLIOS` \n"
+            "  - `INVESTMENTS_PORTFOLIOS`\n"
             "  - `INVESTMENTS_TRANSACTIONS` *This field has been deprecated.*\n"
             "  - `INVOICES`\n"
             "  - `OWNERS`\n"

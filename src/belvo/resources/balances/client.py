@@ -29,10 +29,12 @@ from ...types.unexpected_error import UnexpectedError
 
 
 class BalancesClient:
-    def __init__(self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, username: str, password: str):
+    def __init__(
+        self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, secret_id: str, secret_password: str
+    ):
         self._environment = environment
-        self._username = username
-        self._password = password
+        self._secret_id = secret_id
+        self._secret_password = secret_password
 
     def list_balances(
         self,
@@ -99,8 +101,8 @@ class BalancesClient:
                 "value_date__lte": value_date_lte,
                 "value_date__range": value_date_range,
             },
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -124,8 +126,8 @@ class BalancesClient:
             urllib.parse.urljoin(f"{self._environment.value}/", "api/balances"),
             params={"omit": omit, "fields": fields},
             json=jsonable_encoder(request),
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -165,8 +167,8 @@ class BalancesClient:
             urllib.parse.urljoin(f"{self._environment.value}/", "api/balances"),
             params={"omit": omit, "fields": fields},
             json=jsonable_encoder(request),
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -205,8 +207,8 @@ class BalancesClient:
             "GET",
             urllib.parse.urljoin(f"{self._environment.value}/", f"api/balances/{id}"),
             params={"omit": omit, "fields": fields},
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -228,8 +230,8 @@ class BalancesClient:
         _response = httpx.request(
             "DELETE",
             urllib.parse.urljoin(f"{self._environment.value}/", f"api/balances/{id}"),
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -249,10 +251,12 @@ class BalancesClient:
 
 
 class AsyncBalancesClient:
-    def __init__(self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, username: str, password: str):
+    def __init__(
+        self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, secret_id: str, secret_password: str
+    ):
         self._environment = environment
-        self._username = username
-        self._password = password
+        self._secret_id = secret_id
+        self._secret_password = secret_password
 
     async def list_balances(
         self,
@@ -320,8 +324,8 @@ class AsyncBalancesClient:
                     "value_date__lte": value_date_lte,
                     "value_date__range": value_date_range,
                 },
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -346,8 +350,8 @@ class AsyncBalancesClient:
                 urllib.parse.urljoin(f"{self._environment.value}/", "api/balances"),
                 params={"omit": omit, "fields": fields},
                 json=jsonable_encoder(request),
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -388,8 +392,8 @@ class AsyncBalancesClient:
                 urllib.parse.urljoin(f"{self._environment.value}/", "api/balances"),
                 params={"omit": omit, "fields": fields},
                 json=jsonable_encoder(request),
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -429,8 +433,8 @@ class AsyncBalancesClient:
                 "GET",
                 urllib.parse.urljoin(f"{self._environment.value}/", f"api/balances/{id}"),
                 params={"omit": omit, "fields": fields},
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -453,8 +457,8 @@ class AsyncBalancesClient:
             _response = await _client.request(
                 "DELETE",
                 urllib.parse.urljoin(f"{self._environment.value}/", f"api/balances/{id}"),
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )

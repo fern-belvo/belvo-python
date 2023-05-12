@@ -21,10 +21,10 @@ class NextStepDisplayTokenRequiredPse(pydantic.BaseModel):
     pse_display_token_required: typing.Optional[DisplayTokenRequiredContentPse]
     ready_to_confirm: typing.Optional[bool] = pydantic.Field(
         description=(
-            "Boolean that indicates whether the payment intent is ready to be confirmed. This value will return: \n"
+            "Boolean that indicates whether the payment intent is ready to be confirmed. This value will return:\n"
             "\n"
-            "  - `false` when a customer wants to pay for the very first time. This is so because you still need to input information about your customer in the following steps to process a payment successfully. \n"
-            "  - `true` when a customer wants to pay and this is not their first time. This is so because the payment intent has all the information needed about the customer to process a payment. \n"
+            "  - `false` when a customer wants to pay for the very first time. This is so because you still need to input information about your customer in the following steps to process a payment successfully.\n"
+            "  - `true` when a customer wants to pay and this is not their first time. This is so because the payment intent has all the information needed about the customer to process a payment.\n"
             "\n"
             "\n"
             "**Note:** When the value is `true`, you'll need to confirm the payment intent. You can do this by making a PATCH request sending through the parameter `confirm: true`.\n"

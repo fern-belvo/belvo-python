@@ -18,10 +18,12 @@ from ...types.unauthorized_error_body import UnauthorizedErrorBody
 
 
 class InstitutionsClient:
-    def __init__(self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, username: str, password: str):
+    def __init__(
+        self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, secret_id: str, secret_password: str
+    ):
         self._environment = environment
-        self._username = username
-        self._password = password
+        self._secret_id = secret_id
+        self._secret_password = secret_password
 
     def list_institutions(
         self,
@@ -62,8 +64,8 @@ class InstitutionsClient:
                 "type__in": type_in,
                 "website": website,
             },
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -86,8 +88,8 @@ class InstitutionsClient:
             "GET",
             urllib.parse.urljoin(f"{self._environment.value}/", f"api/institutions/{id}"),
             params={"omit": omit, "fields": fields},
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -107,10 +109,12 @@ class InstitutionsClient:
 
 
 class AsyncInstitutionsClient:
-    def __init__(self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, username: str, password: str):
+    def __init__(
+        self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, secret_id: str, secret_password: str
+    ):
         self._environment = environment
-        self._username = username
-        self._password = password
+        self._secret_id = secret_id
+        self._secret_password = secret_password
 
     async def list_institutions(
         self,
@@ -152,8 +156,8 @@ class AsyncInstitutionsClient:
                     "type__in": type_in,
                     "website": website,
                 },
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -177,8 +181,8 @@ class AsyncInstitutionsClient:
                 "GET",
                 urllib.parse.urljoin(f"{self._environment.value}/", f"api/institutions/{id}"),
                 params={"omit": omit, "fields": fields},
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )

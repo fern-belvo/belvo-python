@@ -22,10 +22,10 @@ class UnexpectedError(pydantic.BaseModel):
     )
     message: typing.Optional[str] = pydantic.Field(
         description=(
-            "A short description of the error. \n"
+            "A short description of the error.\n"
             "\n"
             "For `unexpected_error` errors, the description is:\n"
-            "  \n"
+            "\n"
             "  - `Belvo is unable to process the request due to an internal system issue or to an unsupported response from an institution`.\n"
         )
     )

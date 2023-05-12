@@ -22,7 +22,7 @@ class InvoiceDetailSat(pydantic.BaseModel):
     quantity: typing.Optional[int] = pydantic.Field(description=("The quantity of this invoice item.\n"))
     unit_code: typing.Optional[str] = pydantic.Field(
         description=(
-            "The unit of measure, as defined by the legal entity in the country. \n"
+            "The unit of measure, as defined by the legal entity in the country.\n"
             "- 🇲🇽 Mexico [SAT catalog reference](https://developers.belvo.com/docs/sat-catalogs#unit-code)\n"
         )
     )

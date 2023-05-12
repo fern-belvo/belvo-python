@@ -22,10 +22,10 @@ class SessionExpiredError(pydantic.BaseModel):
     )
     message: typing.Optional[str] = pydantic.Field(
         description=(
-            "A short description of the error. \n"
+            "A short description of the error.\n"
             "\n"
             "For `session_expired` errors, the description is:\n"
-            "  \n"
+            "\n"
             "  - `The session you are trying to resume has expired, please start again from register/retrieve endpoint`.\n"
         )
     )

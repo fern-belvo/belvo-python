@@ -28,10 +28,12 @@ from ...types.unexpected_error import UnexpectedError
 
 
 class EmploymentRecordsClient:
-    def __init__(self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, username: str, password: str):
+    def __init__(
+        self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, secret_id: str, secret_password: str
+    ):
         self._environment = environment
-        self._username = username
-        self._password = password
+        self._secret_id = secret_id
+        self._secret_password = secret_password
 
     def list_employment_records(
         self,
@@ -45,8 +47,8 @@ class EmploymentRecordsClient:
             "GET",
             urllib.parse.urljoin(f"{self._environment.value}/", "api/employment-records"),
             params={"page": page, "page_size": page_size, "omit": omit, "fields": fields},
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -74,8 +76,8 @@ class EmploymentRecordsClient:
             urllib.parse.urljoin(f"{self._environment.value}/", "api/employment-records"),
             params={"omit": omit, "fields": fields},
             json=jsonable_encoder(request),
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -114,8 +116,8 @@ class EmploymentRecordsClient:
             "GET",
             urllib.parse.urljoin(f"{self._environment.value}/", f"api/employment-records/{id}"),
             params={"omit": omit, "fields": fields},
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -137,8 +139,8 @@ class EmploymentRecordsClient:
         _response = httpx.request(
             "DELETE",
             urllib.parse.urljoin(f"{self._environment.value}/", f"api/employment-records/{id}"),
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -158,10 +160,12 @@ class EmploymentRecordsClient:
 
 
 class AsyncEmploymentRecordsClient:
-    def __init__(self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, username: str, password: str):
+    def __init__(
+        self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, secret_id: str, secret_password: str
+    ):
         self._environment = environment
-        self._username = username
-        self._password = password
+        self._secret_id = secret_id
+        self._secret_password = secret_password
 
     async def list_employment_records(
         self,
@@ -176,8 +180,8 @@ class AsyncEmploymentRecordsClient:
                 "GET",
                 urllib.parse.urljoin(f"{self._environment.value}/", "api/employment-records"),
                 params={"page": page, "page_size": page_size, "omit": omit, "fields": fields},
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -206,8 +210,8 @@ class AsyncEmploymentRecordsClient:
                 urllib.parse.urljoin(f"{self._environment.value}/", "api/employment-records"),
                 params={"omit": omit, "fields": fields},
                 json=jsonable_encoder(request),
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -247,8 +251,8 @@ class AsyncEmploymentRecordsClient:
                 "GET",
                 urllib.parse.urljoin(f"{self._environment.value}/", f"api/employment-records/{id}"),
                 params={"omit": omit, "fields": fields},
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )
@@ -271,8 +275,8 @@ class AsyncEmploymentRecordsClient:
             _response = await _client.request(
                 "DELETE",
                 urllib.parse.urljoin(f"{self._environment.value}/", f"api/employment-records/{id}"),
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )

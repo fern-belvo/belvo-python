@@ -28,10 +28,12 @@ OMIT = typing.cast(typing.Any, ...)
 
 
 class IncomeVerificationClient:
-    def __init__(self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, username: str, password: str):
+    def __init__(
+        self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, secret_id: str, secret_password: str
+    ):
         self._environment = environment
-        self._username = username
-        self._password = password
+        self._secret_id = secret_id
+        self._secret_password = secret_password
 
     def verify_income(
         self,
@@ -56,8 +58,8 @@ class IncomeVerificationClient:
             "POST",
             urllib.parse.urljoin(f"{self._environment.value}/", "api/enrich/incomes"),
             json=jsonable_encoder(_request),
-            auth=(self._username, self._password)
-            if self._username is not None and self._password is not None
+            auth=(self._secret_id, self._secret_password)
+            if self._secret_id is not None and self._secret_password is not None
             else None,
             timeout=60,
         )
@@ -87,10 +89,12 @@ class IncomeVerificationClient:
 
 
 class AsyncIncomeVerificationClient:
-    def __init__(self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, username: str, password: str):
+    def __init__(
+        self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, secret_id: str, secret_password: str
+    ):
         self._environment = environment
-        self._username = username
-        self._password = password
+        self._secret_id = secret_id
+        self._secret_password = secret_password
 
     async def verify_income(
         self,
@@ -116,8 +120,8 @@ class AsyncIncomeVerificationClient:
                 "POST",
                 urllib.parse.urljoin(f"{self._environment.value}/", "api/enrich/incomes"),
                 json=jsonable_encoder(_request),
-                auth=(self._username, self._password)
-                if self._username is not None and self._password is not None
+                auth=(self._secret_id, self._secret_password)
+                if self._secret_id is not None and self._secret_password is not None
                 else None,
                 timeout=60,
             )

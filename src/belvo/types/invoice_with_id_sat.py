@@ -85,7 +85,7 @@ class InvoiceWithIdSat(pydantic.BaseModel):
     )
     usage: typing.Optional[str] = pydantic.Field(
         description=(
-            "The invoice's usage code, as defined by the legal entity of the country. \n"
+            "The invoice's usage code, as defined by the legal entity of the country.\n"
             "\n"
             "- 🇲🇽 Mexico [SAT catalog reference article](https://developers.belvo.com/docs/sat-catalogs#usage)\n"
         )
@@ -100,7 +100,7 @@ class InvoiceWithIdSat(pydantic.BaseModel):
     currency: typing.Optional[str] = pydantic.Field(
         description=(
             "The currency of the invoice. For example:\n"
-            " \n"
+            "\n"
             " - 🇧🇷 BRL (Brazilian Real)\n"
             " - 🇨🇴 COP (Colombian Peso)\n"
             " - 🇲🇽 MXN (Mexican Peso)\n"

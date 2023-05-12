@@ -22,10 +22,10 @@ class InstitutionDownError(pydantic.BaseModel):
     )
     message: typing.Optional[str] = pydantic.Field(
         description=(
-            "A short description of the error. \n"
+            "A short description of the error.\n"
             "\n"
             "For `institution_down` errors, the description is:\n"
-            "  \n"
+            "\n"
             "  - `The financial institution is down, try again later`.\n"
         )
     )

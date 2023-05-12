@@ -18,10 +18,10 @@ class NotFoundErrorBody(pydantic.BaseModel):
     )
     message: typing.Optional[str] = pydantic.Field(
         description=(
-            "A short description of the error. \n"
+            "A short description of the error.\n"
             "\n"
             "For `not_found` errors, the description is:\n"
-            "  \n"
+            "\n"
             "  - `Not found`\n"
         )
     )

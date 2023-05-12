@@ -34,272 +34,354 @@ from .resources.transactions.client import AsyncTransactionsClient, Transactions
 
 
 class Belvo:
-    def __init__(self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, username: str, password: str):
+    def __init__(
+        self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, secret_id: str, secret_password: str
+    ):
         self._environment = environment
-        self._username = username
-        self._password = password
+        self._secret_id = secret_id
+        self._secret_password = secret_password
 
     @cached_property
     def links(self) -> LinksClient:
-        return LinksClient(environment=self._environment, username=self._username, password=self._password)
+        return LinksClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def accounts(self) -> AccountsClient:
-        return AccountsClient(environment=self._environment, username=self._username, password=self._password)
+        return AccountsClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def transactions(self) -> TransactionsClient:
-        return TransactionsClient(environment=self._environment, username=self._username, password=self._password)
+        return TransactionsClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def balances(self) -> BalancesClient:
-        return BalancesClient(environment=self._environment, username=self._username, password=self._password)
+        return BalancesClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def institutions(self) -> InstitutionsClient:
-        return InstitutionsClient(environment=self._environment, username=self._username, password=self._password)
+        return InstitutionsClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def owners(self) -> OwnersClient:
-        return OwnersClient(environment=self._environment, username=self._username, password=self._password)
+        return OwnersClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def invoices(self) -> InvoicesClient:
-        return InvoicesClient(environment=self._environment, username=self._username, password=self._password)
+        return InvoicesClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def tax_returns(self) -> TaxReturnsClient:
-        return TaxReturnsClient(environment=self._environment, username=self._username, password=self._password)
+        return TaxReturnsClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def tax_status(self) -> TaxStatusClient:
-        return TaxStatusClient(environment=self._environment, username=self._username, password=self._password)
+        return TaxStatusClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def tax_compliance_status(self) -> TaxComplianceStatusClient:
         return TaxComplianceStatusClient(
-            environment=self._environment, username=self._username, password=self._password
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
         )
 
     @cached_property
     def incomes(self) -> IncomesClient:
-        return IncomesClient(environment=self._environment, username=self._username, password=self._password)
+        return IncomesClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def recurring_expenses(self) -> RecurringExpensesClient:
-        return RecurringExpensesClient(environment=self._environment, username=self._username, password=self._password)
+        return RecurringExpensesClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def investment_portfolios(self) -> InvestmentPortfoliosClient:
         return InvestmentPortfoliosClient(
-            environment=self._environment, username=self._username, password=self._password
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
         )
 
     @cached_property
     def receivable_transactions(self) -> ReceivableTransactionsClient:
         return ReceivableTransactionsClient(
-            environment=self._environment, username=self._username, password=self._password
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
         )
 
     @cached_property
     def risk_insights(self) -> RiskInsightsClient:
-        return RiskInsightsClient(environment=self._environment, username=self._username, password=self._password)
+        return RiskInsightsClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def tax_retentions(self) -> TaxRetentionsClient:
-        return TaxRetentionsClient(environment=self._environment, username=self._username, password=self._password)
+        return TaxRetentionsClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def tax_declarations(self) -> TaxDeclarationsClient:
-        return TaxDeclarationsClient(environment=self._environment, username=self._username, password=self._password)
+        return TaxDeclarationsClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def employment_records(self) -> EmploymentRecordsClient:
-        return EmploymentRecordsClient(environment=self._environment, username=self._username, password=self._password)
+        return EmploymentRecordsClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def income_verification(self) -> IncomeVerificationClient:
-        return IncomeVerificationClient(environment=self._environment, username=self._username, password=self._password)
+        return IncomeVerificationClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def categorization(self) -> CategorizationClient:
-        return CategorizationClient(environment=self._environment, username=self._username, password=self._password)
+        return CategorizationClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def secret_keys(self) -> SecretKeysClient:
-        return SecretKeysClient(environment=self._environment, username=self._username, password=self._password)
+        return SecretKeysClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def payment_webhooks(self) -> PaymentWebhooksClient:
-        return PaymentWebhooksClient(environment=self._environment, username=self._username, password=self._password)
+        return PaymentWebhooksClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def payment_institutions(self) -> PaymentInstitutionsClient:
         return PaymentInstitutionsClient(
-            environment=self._environment, username=self._username, password=self._password
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
         )
 
     @cached_property
     def customers(self) -> CustomersClient:
-        return CustomersClient(environment=self._environment, username=self._username, password=self._password)
+        return CustomersClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def bank_accounts(self) -> BankAccountsClient:
-        return BankAccountsClient(environment=self._environment, username=self._username, password=self._password)
+        return BankAccountsClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def payment_links(self) -> PaymentLinksClient:
-        return PaymentLinksClient(environment=self._environment, username=self._username, password=self._password)
+        return PaymentLinksClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def payment_intents(self) -> PaymentIntentsClient:
-        return PaymentIntentsClient(environment=self._environment, username=self._username, password=self._password)
+        return PaymentIntentsClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def payment_transactions(self) -> PaymentTransactionsClient:
         return PaymentTransactionsClient(
-            environment=self._environment, username=self._username, password=self._password
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
         )
 
 
 class AsyncBelvo:
-    def __init__(self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, username: str, password: str):
+    def __init__(
+        self, *, environment: BelvoEnvironment = BelvoEnvironment.PRODUCTION, secret_id: str, secret_password: str
+    ):
         self._environment = environment
-        self._username = username
-        self._password = password
+        self._secret_id = secret_id
+        self._secret_password = secret_password
 
     @cached_property
     def links(self) -> AsyncLinksClient:
-        return AsyncLinksClient(environment=self._environment, username=self._username, password=self._password)
+        return AsyncLinksClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def accounts(self) -> AsyncAccountsClient:
-        return AsyncAccountsClient(environment=self._environment, username=self._username, password=self._password)
+        return AsyncAccountsClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def transactions(self) -> AsyncTransactionsClient:
-        return AsyncTransactionsClient(environment=self._environment, username=self._username, password=self._password)
+        return AsyncTransactionsClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def balances(self) -> AsyncBalancesClient:
-        return AsyncBalancesClient(environment=self._environment, username=self._username, password=self._password)
+        return AsyncBalancesClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def institutions(self) -> AsyncInstitutionsClient:
-        return AsyncInstitutionsClient(environment=self._environment, username=self._username, password=self._password)
+        return AsyncInstitutionsClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def owners(self) -> AsyncOwnersClient:
-        return AsyncOwnersClient(environment=self._environment, username=self._username, password=self._password)
+        return AsyncOwnersClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def invoices(self) -> AsyncInvoicesClient:
-        return AsyncInvoicesClient(environment=self._environment, username=self._username, password=self._password)
+        return AsyncInvoicesClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def tax_returns(self) -> AsyncTaxReturnsClient:
-        return AsyncTaxReturnsClient(environment=self._environment, username=self._username, password=self._password)
+        return AsyncTaxReturnsClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def tax_status(self) -> AsyncTaxStatusClient:
-        return AsyncTaxStatusClient(environment=self._environment, username=self._username, password=self._password)
+        return AsyncTaxStatusClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def tax_compliance_status(self) -> AsyncTaxComplianceStatusClient:
         return AsyncTaxComplianceStatusClient(
-            environment=self._environment, username=self._username, password=self._password
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
         )
 
     @cached_property
     def incomes(self) -> AsyncIncomesClient:
-        return AsyncIncomesClient(environment=self._environment, username=self._username, password=self._password)
+        return AsyncIncomesClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def recurring_expenses(self) -> AsyncRecurringExpensesClient:
         return AsyncRecurringExpensesClient(
-            environment=self._environment, username=self._username, password=self._password
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
         )
 
     @cached_property
     def investment_portfolios(self) -> AsyncInvestmentPortfoliosClient:
         return AsyncInvestmentPortfoliosClient(
-            environment=self._environment, username=self._username, password=self._password
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
         )
 
     @cached_property
     def receivable_transactions(self) -> AsyncReceivableTransactionsClient:
         return AsyncReceivableTransactionsClient(
-            environment=self._environment, username=self._username, password=self._password
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
         )
 
     @cached_property
     def risk_insights(self) -> AsyncRiskInsightsClient:
-        return AsyncRiskInsightsClient(environment=self._environment, username=self._username, password=self._password)
+        return AsyncRiskInsightsClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def tax_retentions(self) -> AsyncTaxRetentionsClient:
-        return AsyncTaxRetentionsClient(environment=self._environment, username=self._username, password=self._password)
+        return AsyncTaxRetentionsClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def tax_declarations(self) -> AsyncTaxDeclarationsClient:
         return AsyncTaxDeclarationsClient(
-            environment=self._environment, username=self._username, password=self._password
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
         )
 
     @cached_property
     def employment_records(self) -> AsyncEmploymentRecordsClient:
         return AsyncEmploymentRecordsClient(
-            environment=self._environment, username=self._username, password=self._password
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
         )
 
     @cached_property
     def income_verification(self) -> AsyncIncomeVerificationClient:
         return AsyncIncomeVerificationClient(
-            environment=self._environment, username=self._username, password=self._password
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
         )
 
     @cached_property
     def categorization(self) -> AsyncCategorizationClient:
         return AsyncCategorizationClient(
-            environment=self._environment, username=self._username, password=self._password
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
         )
 
     @cached_property
     def secret_keys(self) -> AsyncSecretKeysClient:
-        return AsyncSecretKeysClient(environment=self._environment, username=self._username, password=self._password)
+        return AsyncSecretKeysClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def payment_webhooks(self) -> AsyncPaymentWebhooksClient:
         return AsyncPaymentWebhooksClient(
-            environment=self._environment, username=self._username, password=self._password
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
         )
 
     @cached_property
     def payment_institutions(self) -> AsyncPaymentInstitutionsClient:
         return AsyncPaymentInstitutionsClient(
-            environment=self._environment, username=self._username, password=self._password
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
         )
 
     @cached_property
     def customers(self) -> AsyncCustomersClient:
-        return AsyncCustomersClient(environment=self._environment, username=self._username, password=self._password)
+        return AsyncCustomersClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def bank_accounts(self) -> AsyncBankAccountsClient:
-        return AsyncBankAccountsClient(environment=self._environment, username=self._username, password=self._password)
+        return AsyncBankAccountsClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def payment_links(self) -> AsyncPaymentLinksClient:
-        return AsyncPaymentLinksClient(environment=self._environment, username=self._username, password=self._password)
+        return AsyncPaymentLinksClient(
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
+        )
 
     @cached_property
     def payment_intents(self) -> AsyncPaymentIntentsClient:
         return AsyncPaymentIntentsClient(
-            environment=self._environment, username=self._username, password=self._password
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
         )
 
     @cached_property
     def payment_transactions(self) -> AsyncPaymentTransactionsClient:
         return AsyncPaymentTransactionsClient(
-            environment=self._environment, username=self._username, password=self._password
+            environment=self._environment, secret_id=self._secret_id, secret_password=self._secret_password
         )

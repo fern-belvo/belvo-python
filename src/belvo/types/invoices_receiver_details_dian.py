@@ -15,7 +15,7 @@ class InvoicesReceiverDetailsDian(pydantic.BaseModel):
     tax_payer_type: typing.Optional[str] = pydantic.Field(
         description=(
             "Indicates if the receiver is a business or an individual. Can be either:\n"
-            "  \n"
+            "\n"
             "  - `Persona Jurídica`\n"
             "  - `Persona Natural`\n"
         )

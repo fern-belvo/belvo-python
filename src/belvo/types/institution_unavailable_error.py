@@ -25,7 +25,7 @@ class InstitutionUnavailableError(pydantic.BaseModel):
             "A short description of the error.\n"
             "\n"
             "For `institution_unavailable` errors, the description is:\n"
-            "  \n"
+            "\n"
             "  - `The financial institution is unavailable`.\n"
         )
     )

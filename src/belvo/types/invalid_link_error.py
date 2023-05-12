@@ -22,10 +22,10 @@ class InvalidLinkError(pydantic.BaseModel):
     )
     message: typing.Optional[str] = pydantic.Field(
         description=(
-            "A short description of the error. \n"
+            "A short description of the error.\n"
             "\n"
             "For `invalid_link` errors, the description is:\n"
-            "  \n"
+            "\n"
             "  - `The link has been invalidated. You may need to update link credentials`.\n"
         )
     )

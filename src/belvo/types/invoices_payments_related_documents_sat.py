@@ -19,11 +19,11 @@ class InvoicesPaymentsRelatedDocumentsSat(pydantic.BaseModel):
     currency: typing.Optional[str] = pydantic.Field(
         description=(
             "The currency of the related invoice. For example:\n"
-            "    \n"
+            "\n"
             "- 🇧🇷 BRL (Brazilian Real)\n"
             "- 🇨🇴 COP (Colombian Peso)\n"
             "- 🇲🇽 MXN (Mexican Peso)\n"
-            "  \n"
+            "\n"
             "  Please note that other currencies other than in the list above may be returned.\n"
         )
     )

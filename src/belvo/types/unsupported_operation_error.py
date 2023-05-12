@@ -22,10 +22,10 @@ class UnsupportedOperationError(pydantic.BaseModel):
     )
     message: typing.Optional[str] = pydantic.Field(
         description=(
-            "A short description of the error. \n"
+            "A short description of the error.\n"
             "\n"
             "For `unsupported_operation` errors, the description is:\n"
-            "  \n"
+            "\n"
             "  - `The resource you are trying to access is not supported by this institution`.\n"
         )
     )

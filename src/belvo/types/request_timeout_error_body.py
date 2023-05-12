@@ -22,10 +22,10 @@ class RequestTimeoutErrorBody(pydantic.BaseModel):
     )
     message: typing.Optional[str] = pydantic.Field(
         description=(
-            "A short description of the error. \n"
+            "A short description of the error.\n"
             "\n"
             "For `request_timeout` errors, the description is:\n"
-            "  \n"
+            "\n"
             "  - `The request timed out, you can retry asking for less data by changing your query parameters`.\n"
         )
     )

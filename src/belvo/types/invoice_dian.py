@@ -104,7 +104,7 @@ class InvoiceDian(pydantic.BaseModel):
     currency: typing.Optional[str] = pydantic.Field(
         description=(
             "The currency of the invoice. For example:\n"
-            " \n"
+            "\n"
             " - 🇧🇷 BRL (Brazilian Real)\n"
             " - 🇨🇴 COP (Colombian Peso)\n"
             " - 🇲🇽 MXN (Mexican Peso)\n"

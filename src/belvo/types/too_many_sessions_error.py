@@ -25,10 +25,10 @@ class TooManySessionsError(pydantic.BaseModel):
     )
     message: typing.Optional[str] = pydantic.Field(
         description=(
-            "A short description of the error. \n"
+            "A short description of the error.\n"
             "\n"
             "For `too_many_sessions` errors, the description is:\n"
-            "  \n"
+            "\n"
             "  - `Impossible to login, a session is already opened with the institution for these credentials`.\n"
         )
     )

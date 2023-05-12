@@ -23,10 +23,10 @@ class TokenRequiredResponse(pydantic.BaseModel):
     )
     message: typing.Optional[str] = pydantic.Field(
         description=(
-            "A short description of the error. \n"
+            "A short description of the error.\n"
             "\n"
             "For `token_required` errors, the description is:\n"
-            "  \n"
+            "\n"
             "  - `A MFA token is required by the institution to login`.\n"
         )
     )
