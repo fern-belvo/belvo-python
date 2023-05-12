@@ -8,7 +8,6 @@ import httpx
 import pydantic
 
 from ...core.api_error import ApiError
-from ...core.datetime_utils import serialize_datetime
 from ...core.jsonable_encoder import jsonable_encoder
 from ...environment import BelvoEnvironment
 from ...errors.bad_request_error import BadRequestError
@@ -62,8 +61,8 @@ class PaymentLinksClient:
                 "created_at__lt": created_at_lt,
                 "created_at__lte": created_at_lte,
                 "created_at__range": created_at_range,
-                "status": serialize_datetime(status) if status is not None else None,
-                "ordering": serialize_datetime(ordering) if ordering is not None else None,
+                "status": status,
+                "ordering": ordering,
                 "search": search,
             },
             auth=(self._username, self._password)
@@ -175,8 +174,8 @@ class AsyncPaymentLinksClient:
                     "created_at__lt": created_at_lt,
                     "created_at__lte": created_at_lte,
                     "created_at__range": created_at_range,
-                    "status": serialize_datetime(status) if status is not None else None,
-                    "ordering": serialize_datetime(ordering) if ordering is not None else None,
+                    "status": status,
+                    "ordering": ordering,
                     "search": search,
                 },
                 auth=(self._username, self._password)
