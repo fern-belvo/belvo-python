@@ -28,13 +28,11 @@ belvo_client = Belvo(
 )
 
 link = belvo_client.links.register_link(
-    request=belvo.LinksRequest(
-        institution="banamex_mx_retail",
-        username="username",
-        password="password",
-        accessMode=belvo.EnumLinkAccessModeRequest.SINGLE,
-        credentialsStorage="30d",
-    )
+    institution="banamex_mx_retail",
+    username="username",
+    password="password",
+    accessMode=belvo.EnumLinkAccessModeRequest.SINGLE,
+    credentialsStorage="30d",
 )
 
 print(link)
@@ -55,13 +53,11 @@ belvo_client = AsyncBelvo(
 
 async def get_link() -> None:
     link = await belvo_client.links.register_link({
-        body=belvo.LinksRequest(
-            institution="banamex_mx_retail",
-            username="username",
-            password="password",
-            accessMode=belvo.EnumLinkAccessModeRequest.SINGLE,
-            credentialsStorage="30d,
-        )
+        institution="banamex_mx_retail",
+        username="username",
+        password="password",
+        accessMode=belvo.EnumLinkAccessModeRequest.SINGLE,
+        credentialsStorage="30d,
     })
 
     print(link)
