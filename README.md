@@ -28,7 +28,7 @@ belvo_client = Belvo(
 )
 
 link = belvo_client.links.register_link(
-    body=belvo.LinksRequest(
+    request=belvo.LinksRequest(
         institution="banamex_mx_retail",
         username="username",
         password="password",
