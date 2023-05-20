@@ -46,8 +46,8 @@ class InvoiceDian(pydantic.BaseModel):
             "For example: If the invoice is paid in installments, this field indicates the date when the installment is to be paid.\n"
         )
     )
-    invoice_type: EnumInvoiceDianInvoiceType
-    type: EnumInvoiceType
+    invoice_type: typing.Optional[EnumInvoiceDianInvoiceType]
+    type: typing.Optional[EnumInvoiceType]
     sender_id: typing.Optional[str] = pydantic.Field(description=("The fiscal ID of the invoice sender.\n"))
     sender_name: typing.Optional[str] = pydantic.Field(description=("The name of the invoice sender.\n"))
     sender_details: typing.Optional[InvoiceSenderDetailsDian]
@@ -129,7 +129,7 @@ class InvoiceDian(pydantic.BaseModel):
     payments: typing.List[InvoicesPaymentsDian] = pydantic.Field(
         description=("**Note**: This field is not applicable for DIAN Colombia and will return `null`.\n")
     )
-    payroll: InvoicesPayrollDian
+    payroll: typing.Optional[InvoicesPayrollDian]
     folio: typing.Optional[str] = pydantic.Field(
         description=("**Note**: This field is not applicable for DIAN Colombia and will return `null`.\n")
     )

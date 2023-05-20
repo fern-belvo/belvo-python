@@ -7,6 +7,14 @@ T_Result = typing.TypeVar("T_Result")
 
 
 class EnumInvoiceDianInvoiceType(str, enum.Enum):
+    """
+    The fiscal institution's classification of the invoice.
+
+    For Colombia's DIAN, we return one of the following values:
+
+      - `Factura Electrónica de Venta`
+    """
+
     FACTURA_ELECTRONICA_DE_VENTA = "Factura Electrónica de Venta"
 
     def visit(self, factura_electronica_de_venta: typing.Callable[[], T_Result]) -> T_Result:

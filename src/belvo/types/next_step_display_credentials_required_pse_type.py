@@ -7,6 +7,10 @@ T_Result = typing.TypeVar("T_Result")
 
 
 class NextStepDisplayCredentialsRequiredPseType(str, enum.Enum):
+    """
+    The type of `next_step` you need to follow.
+    """
+
     PSE_DISPLAY_PAYMENT_METHOD_INFORMATION = "pse_display_payment_method_information"
     PSE_DISPLAY_CREDENTIALS_REQUIRED = "pse_display_credentials_required"
     PSE_DISPLAY_NEEDS_REDIRECT = "pse_display_needs_redirect"

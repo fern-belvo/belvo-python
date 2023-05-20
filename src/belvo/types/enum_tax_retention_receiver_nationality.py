@@ -7,6 +7,12 @@ T_Result = typing.TypeVar("T_Result")
 
 
 class EnumTaxRetentionReceiverNationality(str, enum.Enum):
+    """
+    Whether the invoice receiver is a Mexican national or not. If the receiver is not considered a Mexican national, the retained taxes can be calculated differently. Possible values:
+      - `NATIONAL`
+      - `FOREIGN`
+    """
+
     NATIONAL = "NATIONAL"
     FOREIGN = "FOREIGN"
 

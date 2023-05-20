@@ -10,6 +10,10 @@ from .tax_status_address_between_street_sat import TaxStatusAddressBetweenStreet
 
 
 class TaxStatusAddressSat(pydantic.BaseModel):
+    """
+    The tax payer's address details.
+    """
+
     postal_code: typing.Optional[str] = pydantic.Field(description=("The postcode of the address.\n"))
     street_type: typing.Optional[str] = pydantic.Field(description=("The `street` type.\n"))
     street: typing.Optional[str] = pydantic.Field(description=("The tax payers street.\n"))

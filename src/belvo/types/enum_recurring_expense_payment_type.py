@@ -7,6 +7,13 @@ T_Result = typing.TypeVar("T_Result")
 
 
 class EnumRecurringExpensePaymentType(str, enum.Enum):
+    """
+    The type of recurring expense. We return one of the following values:
+
+      - `SUBSCRIPTION`
+      - `REGULAR`
+    """
+
     SUBSCRIPTION = "SUBSCRIPTION"
     REGULAR = "REGULAR"
 

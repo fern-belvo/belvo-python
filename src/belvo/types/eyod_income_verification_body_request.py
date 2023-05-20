@@ -21,7 +21,7 @@ class EyodIncomeVerificationBodyRequest(pydantic.BaseModel):
         description=("The date when the income transaction occurred, in `YYYY-MM-DD` format.\n")
     )
     description: str = pydantic.Field(description=("The description of the income.\n"))
-    type: EnumIncomeVerificationType
+    type: typing.Optional[EnumIncomeVerificationType]
     amount: float = pydantic.Field(description=("The income amount.\n"))
     currency: str = pydantic.Field(
         description=(

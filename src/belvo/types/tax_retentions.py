@@ -41,7 +41,7 @@ class TaxRetentions(pydantic.BaseModel):
     )
     sender_id: typing.Optional[str] = pydantic.Field(description=("The fiscal ID of the invoice sender.\n"))
     sender_name: typing.Optional[str] = pydantic.Field(description=("The name of the invoice sender.\n"))
-    receiver_nationality: EnumTaxRetentionReceiverNationality
+    receiver_nationality: typing.Optional[EnumTaxRetentionReceiverNationality]
     receiver_id: typing.Optional[str] = pydantic.Field(description=("The fiscal ID of the invoice receiver.\n"))
     receiver_name: typing.Optional[str] = pydantic.Field(description=("The name of the invoice receiver.\n"))
     total_invoice_amount: typing.Optional[float] = pydantic.Field(

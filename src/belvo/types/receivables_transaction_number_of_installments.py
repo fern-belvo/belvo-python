@@ -9,6 +9,10 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class ReceivablesTransactionNumberOfInstallments(pydantic.BaseModel):
+    """
+    Details regarding the number of installments for the transaction, if applicable.
+    """
+
     paid: typing.Optional[int] = pydantic.Field(
         description=("The number of payments already made to pay the cost of the transaction.\n")
     )

@@ -9,6 +9,10 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class AccountsReceivablesData(pydantic.BaseModel):
+    """
+    Additional details regarding the receivables account, if applicable.
+    """
+
     current: typing.Optional[float] = pydantic.Field(
         description=("The total sum of all receivables (`available` + `anticipated`)\n")
     )

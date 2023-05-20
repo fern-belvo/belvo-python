@@ -10,6 +10,10 @@ from .enum_transaction_bill_status import EnumTransactionBillStatus
 
 
 class TransactionCreditCardData(pydantic.BaseModel):
+    """
+    Additional data provided by the institution for credit card transactions.
+    """
+
     collected_at: typing.Optional[str] = pydantic.Field(
         description=("The ISO-8601 timestamp when the data point was collected.\n")
     )

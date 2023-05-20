@@ -11,6 +11,10 @@ from .accounts_loan_data_interest_rate import AccountsLoanDataInterestRate
 
 
 class AccountsLoanData(pydantic.BaseModel):
+    """
+    The loan options associated with this account.
+    """
+
     collected_at: str = pydantic.Field(description=("The ISO-8601 timestamp when the data point was collected.\n"))
     contract_amount: typing.Optional[float] = pydantic.Field(
         description=(
@@ -40,7 +44,7 @@ class AccountsLoanData(pydantic.BaseModel):
     interest_rates: typing.Optional[typing.List[AccountsLoanDataInterestRate]] = pydantic.Field(
         description=("Breakdown of the interest applied to the loan.\n")
     )
-    fees: typing.Optional[typing.List[AccountsLoanDataFees]] = pydantic.Field(
+    fees: typing.Optional[typing.List[typing.Optional[AccountsLoanDataFees]]] = pydantic.Field(
         description=("Breakdown of the fees applied to the loan.\n")
     )
     number_of_installments_total: typing.Optional[int] = pydantic.Field(

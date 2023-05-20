@@ -7,6 +7,10 @@ T_Result = typing.TypeVar("T_Result")
 
 
 class EnumTaxComplianceStatusOutcome(str, enum.Enum):
+    """
+    Indicates whether the taxpayer is complying to all their tax obligations (`POSITIVE`), if they are not (`NEGATIVE`), or have none to comply to (`NO_OBLIGATIONS`).
+    """
+
     POSITIVE = "POSITIVE"
     NEGATIVE = "NEGATIVE"
     NO_OBLIGATIONS = "NO_OBLIGATIONS"

@@ -7,6 +7,13 @@ T_Result = typing.TypeVar("T_Result")
 
 
 class EnumLoanDataInterestRateType(str, enum.Enum):
+    """
+    The period that the interest is applied to the loan. We return one of the following values:
+
+      - `MONTHLY`
+      - `YEARLY`
+    """
+
     MONTHLY = "MONTHLY"
     YEARLY = "YEARLY"
 

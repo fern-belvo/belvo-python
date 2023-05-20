@@ -9,6 +9,10 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class RiskInsightsTransactionMetrics(pydantic.BaseModel):
+    """
+    Aggregated metrics calculated band on the user's transactions from checking, savings, credit card, and loan accounts.
+    """
+
     num_transactions_1_w: int = pydantic.Field(
         alias="num_transactions_1w",
         description=(

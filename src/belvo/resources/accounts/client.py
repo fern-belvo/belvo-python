@@ -140,7 +140,7 @@ class AccountsClient:
 
     def retrieve_accounts(
         self, *, omit: typing.Optional[str] = None, fields: typing.Optional[str] = None, request: StandardRequest
-    ) -> typing.List[Account]:
+    ) -> typing.List[typing.Optional[Account]]:
         _response = httpx.request(
             "POST",
             urllib.parse.urljoin(f"{self._environment.value}/", "api/accounts"),
@@ -152,7 +152,7 @@ class AccountsClient:
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(typing.List[Account], _response.json())  # type: ignore
+            return pydantic.parse_obj_as(typing.List[typing.Optional[Account]], _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(
                 pydantic.parse_obj_as(typing.List[BadRequestErrorBodyItem], _response.json())  # type: ignore
@@ -181,7 +181,7 @@ class AccountsClient:
 
     def patch_accounts(
         self, *, omit: typing.Optional[str] = None, fields: typing.Optional[str] = None, request: PatchBody
-    ) -> typing.List[Account]:
+    ) -> typing.List[typing.Optional[Account]]:
         _response = httpx.request(
             "PATCH",
             urllib.parse.urljoin(f"{self._environment.value}/", "api/accounts"),
@@ -193,7 +193,7 @@ class AccountsClient:
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(typing.List[Account], _response.json())  # type: ignore
+            return pydantic.parse_obj_as(typing.List[typing.Optional[Account]], _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(
                 pydantic.parse_obj_as(typing.List[BadRequestErrorBodyItem], _response.json())  # type: ignore
@@ -222,7 +222,7 @@ class AccountsClient:
 
     def detail_account(
         self, id: str, *, omit: typing.Optional[str] = None, fields: typing.Optional[str] = None
-    ) -> Account:
+    ) -> typing.Optional[Account]:
         _response = httpx.request(
             "GET",
             urllib.parse.urljoin(f"{self._environment.value}/", f"api/accounts/{id}"),
@@ -233,7 +233,7 @@ class AccountsClient:
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(Account, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(typing.Optional[Account], _response.json())  # type: ignore
         if _response.status_code == 401:
             raise UnauthorizedError(
                 pydantic.parse_obj_as(typing.List[UnauthorizedErrorBody], _response.json())  # type: ignore
@@ -383,7 +383,7 @@ class AsyncAccountsClient:
 
     async def retrieve_accounts(
         self, *, omit: typing.Optional[str] = None, fields: typing.Optional[str] = None, request: StandardRequest
-    ) -> typing.List[Account]:
+    ) -> typing.List[typing.Optional[Account]]:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
@@ -396,7 +396,7 @@ class AsyncAccountsClient:
                 timeout=60,
             )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(typing.List[Account], _response.json())  # type: ignore
+            return pydantic.parse_obj_as(typing.List[typing.Optional[Account]], _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(
                 pydantic.parse_obj_as(typing.List[BadRequestErrorBodyItem], _response.json())  # type: ignore
@@ -425,7 +425,7 @@ class AsyncAccountsClient:
 
     async def patch_accounts(
         self, *, omit: typing.Optional[str] = None, fields: typing.Optional[str] = None, request: PatchBody
-    ) -> typing.List[Account]:
+    ) -> typing.List[typing.Optional[Account]]:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "PATCH",
@@ -438,7 +438,7 @@ class AsyncAccountsClient:
                 timeout=60,
             )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(typing.List[Account], _response.json())  # type: ignore
+            return pydantic.parse_obj_as(typing.List[typing.Optional[Account]], _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(
                 pydantic.parse_obj_as(typing.List[BadRequestErrorBodyItem], _response.json())  # type: ignore
@@ -467,7 +467,7 @@ class AsyncAccountsClient:
 
     async def detail_account(
         self, id: str, *, omit: typing.Optional[str] = None, fields: typing.Optional[str] = None
-    ) -> Account:
+    ) -> typing.Optional[Account]:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "GET",
@@ -479,7 +479,7 @@ class AsyncAccountsClient:
                 timeout=60,
             )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(Account, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(typing.Optional[Account], _response.json())  # type: ignore
         if _response.status_code == 401:
             raise UnauthorizedError(
                 pydantic.parse_obj_as(typing.List[UnauthorizedErrorBody], _response.json())  # type: ignore

@@ -9,6 +9,10 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class RiskInsightsBalanceMetrics(pydantic.BaseModel):
+    """
+    Balance metrics calculated based on the user's balances from checking and savings accounts.
+    """
+
     min_balance_1_w: typing.Optional[float] = pydantic.Field(
         alias="min_balance_1w", description=("The minimum balance in the period (one week).\n")
     )

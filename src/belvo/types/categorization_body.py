@@ -46,9 +46,9 @@ class CategorizationBody(pydantic.BaseModel):
             "The four-digit ISO 18245 Merchant Category Code (MCC). We only return this value when `account_type` = `CREDIT_CARD`.\n"
         )
     )
-    category: EnumCategorizationTransactionCategory
+    category: typing.Optional[EnumCategorizationTransactionCategory]
     subcategory: typing.Optional[EnumCategorizationTransactionSubcategory]
-    merchant: CategorizationMerchantData
+    merchant: typing.Optional[CategorizationMerchantData]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

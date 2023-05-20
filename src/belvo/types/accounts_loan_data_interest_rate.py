@@ -17,7 +17,7 @@ class AccountsLoanDataInterestRate(pydantic.BaseModel):
     name: typing.Optional[str] = pydantic.Field(
         description=("The name of the type of interest rate applied to the loan.\n")
     )
-    type: EnumLoanDataInterestRateType
+    type: typing.Optional[EnumLoanDataInterestRateType]
     value: typing.Optional[float] = pydantic.Field(description=("The interest rate (in percent or currency value).\n"))
 
     def json(self, **kwargs: typing.Any) -> str:

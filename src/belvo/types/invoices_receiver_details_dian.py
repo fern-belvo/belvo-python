@@ -9,6 +9,10 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class InvoicesReceiverDetailsDian(pydantic.BaseModel):
+    """
+    Details regarding the receiver.
+    """
+
     collected_at: typing.Optional[str] = pydantic.Field(
         description=("The ISO-8601 timestamp when the data point was collected.\n")
     )

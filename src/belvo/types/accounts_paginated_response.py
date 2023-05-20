@@ -21,7 +21,9 @@ class AccountsPaginatedResponse(pydantic.BaseModel):
     previous: typing.Optional[str] = pydantic.Field(
         description=("The URL to the previous page of results. If there is no previous page, the value is `null`.\n")
     )
-    results: typing.Optional[typing.List[Account]] = pydantic.Field(description=("An array of Account objects.\n"))
+    results: typing.Optional[typing.List[typing.Optional[Account]]] = pydantic.Field(
+        description=("An array of Account objects.\n")
+    )
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

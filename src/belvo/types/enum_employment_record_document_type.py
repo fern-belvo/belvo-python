@@ -7,6 +7,13 @@ T_Result = typing.TypeVar("T_Result")
 
 
 class EnumEmploymentRecordDocumentType(str, enum.Enum):
+    """
+    The type of document related to the individual. We return one of the following values:
+
+      - `NSS`
+      - `CURP`
+    """
+
     NSS = "NSS"
     CURP = "CURP"
 

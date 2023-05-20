@@ -9,6 +9,12 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class RiskInsightsCashflowMetrics(pydantic.BaseModel):
+    """
+    Aggregated metrics calculated based on the user's transactions from checking, savings, credit, and loan accounts.
+
+    However, internal transfers (transfers between accounts belonging to the same link) are not used in the calculation.
+    """
+
     sum_positive_1_w: typing.Optional[float] = pydantic.Field(
         alias="sum_positive_1w",
         description=(

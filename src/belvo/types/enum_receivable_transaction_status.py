@@ -7,6 +7,15 @@ T_Result = typing.TypeVar("T_Result")
 
 
 class EnumReceivableTransactionStatus(str, enum.Enum):
+    """
+    The status of the transaction. Can be either:
+
+      - `APPROVED`
+      - `CANCELLED`
+      - `REVERTED`
+      - `UNCATEGORIZED`
+    """
+
     APPROVED = "APPROVED"
     CANCELLED = "CANCELLED"
     REVERTED = "REVERTED"

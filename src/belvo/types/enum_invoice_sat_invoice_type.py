@@ -7,6 +7,18 @@ T_Result = typing.TypeVar("T_Result")
 
 
 class EnumInvoiceSatInvoiceType(str, enum.Enum):
+    """
+    The fiscal institution's classification of the invoice.
+
+    For Mexico's SAT, we return one of the following values:
+
+      - `Egreso`
+      - `Ingreso`
+      - `Nómina`
+      - `Pago`
+      - `Traslado`
+    """
+
     EGRESO = "Egreso"
     INGRESO = "Ingreso"
     NOMINA = "Nómina"

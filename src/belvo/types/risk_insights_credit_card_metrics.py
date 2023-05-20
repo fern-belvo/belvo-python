@@ -9,6 +9,10 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class RiskInsightsCreditCardMetrics(pydantic.BaseModel):
+    """
+    Aggregated metrics calculated based on the link's credit card accounts.
+    """
+
     num_accounts: int = pydantic.Field(description=("Number of credit cards accounts associated to the link.\n"))
     sum_credit_limit: typing.Optional[float] = pydantic.Field(description=("Sum total of all credit cards' limits.\n"))
     sum_credit_used: typing.Optional[float] = pydantic.Field(description=("Sum total of all credit used.\n"))

@@ -7,6 +7,10 @@ T_Result = typing.TypeVar("T_Result")
 
 
 class NextStepDisplayPaymentFailedType(str, enum.Enum):
+    """
+    The type of `next_step` you need to follow.
+    """
+
     OPEN_FINANCE_DISPLAY_PAYMENT_METHOD_INFORMATION = "open_finance_display_payment_method_information"
     OPEN_FINANCE_DISPLAY_CONFIRMATION_REQUIRED = "open_finance_display_confirmation_required"
     OPEN_FINANCE_DISPLAY_NEEDS_REDIRECT = "open_finance_display_needs_redirect"

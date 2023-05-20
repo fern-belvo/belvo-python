@@ -9,6 +9,10 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class TaxStatusTaxPayerInformationSat(pydantic.BaseModel):
+    """
+    Details regarding the taxpayer.
+    """
+
     rfc: typing.Optional[str] = pydantic.Field(
         description=("The tax payers's identification number (For Mexico, this is the RFC).\n")
     )

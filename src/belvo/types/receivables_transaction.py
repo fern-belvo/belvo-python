@@ -42,12 +42,12 @@ class ReceivablesTransaction(pydantic.BaseModel):
             " Please note that currencies other than those listed above may be returned.\n"
         )
     )
-    type: EnumReceivableTransactionType
+    type: typing.Optional[EnumReceivableTransactionType]
     gross_amount: typing.Optional[float] = pydantic.Field(description=("The total gross amount of the transaction.\n"))
     net_amount: typing.Optional[float] = pydantic.Field(description=("The net amount of the transaction.\n"))
     fees: typing.List[RecevablesTransactionFees]
-    status: EnumReceivableTransactionStatus
-    number_of_installments: ReceivablesTransactionNumberOfInstallments
+    status: typing.Optional[EnumReceivableTransactionStatus]
+    number_of_installments: typing.Optional[ReceivablesTransactionNumberOfInstallments]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

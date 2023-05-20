@@ -54,7 +54,7 @@ class InvestmentsPortfolioInstrument(pydantic.BaseModel):
         description=("The start date of the instrument. Only applicable for instruments of type `bond` or `savings`.\n")
     )
     redemption_conditions: typing.Optional[
-        typing.List[InvestmentsPortfolioInstrumentRedemptionConditions]
+        typing.List[typing.Optional[InvestmentsPortfolioInstrumentRedemptionConditions]]
     ] = pydantic.Field(
         description=(
             "An array of conditions that apply to the instrument in order to retrieve the final value.\n"
@@ -62,12 +62,12 @@ class InvestmentsPortfolioInstrument(pydantic.BaseModel):
             "For example, the due date, the liquidity date, the previdencia type, and so on.\n"
         )
     )
-    fees: typing.Optional[typing.List[InvestmentsPortfolioInstrumentFees]] = pydantic.Field(
+    fees: typing.Optional[typing.List[typing.Optional[InvestmentsPortfolioInstrumentFees]]] = pydantic.Field(
         description=("An array of fees that apply to the instrument.\n")
     )
-    interest_rates: typing.Optional[typing.List[InvestmentsPortfolioInstrumentInterestRate]] = pydantic.Field(
-        description=("An array of interest rates that apply to the instrument.\n")
-    )
+    interest_rates: typing.Optional[
+        typing.List[typing.Optional[InvestmentsPortfolioInstrumentInterestRate]]
+    ] = pydantic.Field(description=("An array of interest rates that apply to the instrument.\n"))
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

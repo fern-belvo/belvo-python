@@ -24,7 +24,7 @@ class RecurringExpenses(pydantic.BaseModel):
     id: typing.Optional[str] = pydantic.Field(
         description=("Belvo's unique identifier used to reference the current recurring expense.\n")
     )
-    account: Account
+    account: typing.Optional[Account]
     name: typing.Optional[str] = pydantic.Field(
         description=(
             "The name for the recurring expense.\n"
@@ -32,7 +32,7 @@ class RecurringExpenses(pydantic.BaseModel):
             'ℹ️ **Note**: This information is taken from the description section of a transaction and then normalized to provide you with an easy-to-read name. As such, sometimes the name will reflect the merchant the payment is made to (for example, Netflix.com), while for other recurring expenses, this could be something like "Monthly payment to John".\n'
         )
     )
-    transactions: typing.List[RecurringExpenseSourceTransaction] = pydantic.Field(
+    transactions: typing.List[typing.Optional[RecurringExpenseSourceTransaction]] = pydantic.Field(
         description=(
             "An array of minified transaction objects used to evaluate the recurring expense. If no transactions were found, we return an empty array.\n"
         )
@@ -52,7 +52,7 @@ class RecurringExpenses(pydantic.BaseModel):
         )
     )
     category: EnumRecurringExpenseCategory
-    payment_type: EnumRecurringExpensePaymentType
+    payment_type: typing.Optional[EnumRecurringExpensePaymentType]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

@@ -14,7 +14,7 @@ class RecevablesTransactionFees(pydantic.BaseModel):
     Details regarding the fees applied to the transaction.
     """
 
-    type: EnumReceivableTransactionFeeType
+    type: typing.Optional[EnumReceivableTransactionFeeType]
     value: float = pydantic.Field(description=("The value of `fees.type`.\n"))
 
     def json(self, **kwargs: typing.Any) -> str:

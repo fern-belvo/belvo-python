@@ -9,6 +9,10 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class RiskInsightsLoansMetrics(pydantic.BaseModel):
+    """
+    Aggregated metrics calculated based on the user's loan accounts.
+    """
+
     num_accounts: int = pydantic.Field(description=("Number of loan accounts associated with the link.\n"))
     sum_loans_principal: typing.Optional[float] = pydantic.Field(
         description=("Sum total of the principal for all of the link's loan accounts.\n")

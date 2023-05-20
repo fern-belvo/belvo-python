@@ -9,6 +9,10 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class InvoicesPayrollSat(pydantic.BaseModel):
+    """
+    Details regarding the payroll payment. Only applicable for payroll invoices.
+    """
+
     days: typing.Optional[int] = pydantic.Field(description=("The number of days covered by the payment.\n"))
     type: typing.Optional[str] = pydantic.Field(
         description=(

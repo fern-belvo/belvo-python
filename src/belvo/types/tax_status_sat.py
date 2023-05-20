@@ -31,8 +31,8 @@ class TaxStatusSat(pydantic.BaseModel):
     id_cif: typing.Optional[str] = pydantic.Field(
         description=("The taxpayer's *Cédula de Identificación Fiscal* (CIF) ID.\n")
     )
-    tax_payer_information: TaxStatusTaxPayerInformationSat
-    address: TaxStatusAddressSat
+    tax_payer_information: typing.Optional[TaxStatusTaxPayerInformationSat]
+    address: typing.Optional[TaxStatusAddressSat]
     economic_activity: typing.Optional[typing.List[TaxStatusEconomicActivitySat]] = pydantic.Field(
         description=("A list of economic activity objects.\n")
     )

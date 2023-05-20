@@ -20,7 +20,7 @@ class Transaction(pydantic.BaseModel):
     internal_identification: typing.Optional[str] = pydantic.Field(
         description=("The institution's internal identification for the transaction.\n")
     )
-    account: Account
+    account: typing.Optional[Account]
     collected_at: typing.Optional[str] = pydantic.Field(
         description=("The ISO-8601 timestamp when the data point was collected.\n")
     )
@@ -49,14 +49,14 @@ class Transaction(pydantic.BaseModel):
     observations: typing.Optional[str] = pydantic.Field(
         description=("Additional observations provided by the institution on the transaction.\n")
     )
-    merchant: TransactionMerchantData
-    category: EnumTransactionCategory
+    merchant: typing.Optional[TransactionMerchantData]
+    category: typing.Optional[EnumTransactionCategory]
     subcategory: typing.Optional[EnumTransactionSubcategory]
     reference: typing.Optional[str] = pydantic.Field(
         description=("The reference number of the transaction, provided by the bank.\n")
     )
-    type: EnumTransactionType
-    status: EnumTransactionStatus
+    type: typing.Optional[EnumTransactionType]
+    status: typing.Optional[EnumTransactionStatus]
     credit_card_data: typing.Optional[TransactionCreditCardData]
 
     def json(self, **kwargs: typing.Any) -> str:

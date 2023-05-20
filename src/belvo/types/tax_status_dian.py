@@ -35,8 +35,8 @@ class TaxStatusDian(pydantic.BaseModel):
     id_cif: typing.Optional[str] = pydantic.Field(
         description=("The taxpayer's *Cédula de ciudadanía* (CC) ID. Only applicable for individuals.\n")
     )
-    tax_payer_information: TaxStatusTaxPayerInformationDian
-    address: TaxStatusAddressDian
+    tax_payer_information: typing.Optional[TaxStatusTaxPayerInformationDian]
+    address: typing.Optional[TaxStatusAddressDian]
     economic_activity: typing.Optional[typing.List[TaxStatusEconomicActivityDian]] = pydantic.Field(
         description=("A list of economic activity objects.\n")
     )

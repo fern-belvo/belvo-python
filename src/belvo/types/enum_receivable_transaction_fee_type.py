@@ -7,6 +7,12 @@ T_Result = typing.TypeVar("T_Result")
 
 
 class EnumReceivableTransactionFeeType(str, enum.Enum):
+    """
+    The type of fee applied to the transaction. We return one of the following values:
+
+      - `TRANSACTION_FEE`
+    """
+
     TRANSACTION_FEE = "TRANSACTION_FEE"
 
     def visit(self, transaction_fee: typing.Callable[[], T_Result]) -> T_Result:

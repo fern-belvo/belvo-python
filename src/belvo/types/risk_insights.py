@@ -24,11 +24,11 @@ class RiskInsights(pydantic.BaseModel):
     created_at: str = pydantic.Field(
         description=("The ISO-8601 timestamp of when the data point was last updated in Belvo's database.\n")
     )
-    transactions_metrics: RiskInsightsTransactionMetrics
-    balances_metrics: RiskInsightsBalanceMetrics
-    cashflow_metrics: RiskInsightsCashflowMetrics
-    credit_cards_metrics: RiskInsightsCreditCardMetrics
-    loans_metrics: RiskInsightsLoansMetrics
+    transactions_metrics: typing.Optional[RiskInsightsTransactionMetrics]
+    balances_metrics: typing.Optional[RiskInsightsBalanceMetrics]
+    cashflow_metrics: typing.Optional[RiskInsightsCashflowMetrics]
+    credit_cards_metrics: typing.Optional[RiskInsightsCreditCardMetrics]
+    loans_metrics: typing.Optional[RiskInsightsLoansMetrics]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

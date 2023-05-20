@@ -44,7 +44,7 @@ class InvestmentsPortfolio(pydantic.BaseModel):
             "Please note that other currencies other than in the list above may be returned.\n"
         )
     )
-    instruments: typing.Optional[typing.List[InvestmentsPortfolioInstrument]] = pydantic.Field(
+    instruments: typing.Optional[typing.List[typing.Optional[InvestmentsPortfolioInstrument]]] = pydantic.Field(
         description=("An array of instruments that fall into the investment portfolio.\n")
     )
 

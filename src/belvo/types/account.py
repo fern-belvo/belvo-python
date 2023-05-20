@@ -16,6 +16,12 @@ from .institution_account import InstitutionAccount
 
 
 class Account(pydantic.BaseModel):
+    """
+    Details regarding the account.
+
+    **Note**: For our recurring expenses resource, this account relates to the account that was analyzed to generate the recurring expenses report.
+    """
+
     id: typing.Optional[str] = pydantic.Field(
         description=("The unique identifier created by Belvo used to reference the current account.\n")
     )
@@ -25,7 +31,7 @@ class Account(pydantic.BaseModel):
     created_at: typing.Optional[str] = pydantic.Field(
         description=("The ISO-8601 timestamp of when the data point was last updated in Belvo's database.\n")
     )
-    category: EnumAccountCategory
+    category: typing.Optional[EnumAccountCategory]
     balance_type: typing.Optional[str] = pydantic.Field(
         description=(
             "Indicates whether this account is either an `ASSET` or a `LIABILITY`. You can consider the balance of an `ASSET` as being positive, while the balance of a `LIABILITY` as negative.\n"
@@ -67,8 +73,8 @@ class Account(pydantic.BaseModel):
             "The ISO-8601 timestamp of Belvo's most recent successful access to the institution for the given link.\n"
         )
     )
-    credit_data: AccountsCreditData
-    loan_data: AccountsLoanData
+    credit_data: typing.Optional[AccountsCreditData]
+    loan_data: typing.Optional[AccountsLoanData]
     funds_data: typing.Optional[typing.List[AccountsFundsData]] = pydantic.Field(
         description=("One or more funds that contribute to the the pension account.\n")
     )

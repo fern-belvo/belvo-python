@@ -7,6 +7,12 @@ T_Result = typing.TypeVar("T_Result")
 
 
 class EnumIncomeVerificationType(str, enum.Enum):
+    """
+    The direction of the transaction:
+
+    - `INFLOW` indicates money coming into the account.
+    """
+
     INFLOW = "INFLOW"
 
     def visit(self, inflow: typing.Callable[[], T_Result]) -> T_Result:

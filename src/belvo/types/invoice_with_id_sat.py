@@ -33,8 +33,8 @@ class InvoiceWithIdSat(pydantic.BaseModel):
     status: typing.Optional[str] = pydantic.Field(
         description=("The status of the invoice. Can be either *Vigente* (valid) or *Cancelado* (cancelled).\n")
     )
-    invoice_type: EnumInvoiceSatInvoiceType
-    type: EnumInvoiceType
+    invoice_type: typing.Optional[EnumInvoiceSatInvoiceType]
+    type: typing.Optional[EnumInvoiceType]
     sender_id: typing.Optional[str] = pydantic.Field(description=("The fiscal ID of the invoice sender\n"))
     sender_name: typing.Optional[str] = pydantic.Field(description=("The name of the invoice sender.\n"))
     sender_tax_fraud_status: typing.Optional[str] = pydantic.Field(
@@ -125,7 +125,7 @@ class InvoiceWithIdSat(pydantic.BaseModel):
     payments: typing.List[InvoicesPaymentsSat] = pydantic.Field(
         description=("A list detailing all the invoice payments.\n")
     )
-    payroll: InvoicesPayrollSat
+    payroll: typing.Optional[InvoicesPayrollSat]
     folio: typing.Optional[str] = pydantic.Field(
         description=("The internal control number that the taxpayer assigns to the invoice.\n")
     )

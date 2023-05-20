@@ -10,6 +10,10 @@ from .enum_loan_data_fee_type import EnumLoanDataFeeType
 
 
 class AccountsLoanDataFees(pydantic.BaseModel):
+    """
+    Breakdown of the fees applied to the loan.
+    """
+
     type: EnumLoanDataFeeType
     value: float = pydantic.Field(description=("The total value of the fee. Same currency of the Loan.\n"))
 

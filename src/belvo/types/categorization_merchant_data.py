@@ -9,6 +9,10 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class CategorizationMerchantData(pydantic.BaseModel):
+    """
+    Additional data regarding the merchant involved in the transaction.
+    """
+
     logo: typing.Optional[str] = pydantic.Field(description=("The URL to the merchant's logo.\n"))
     website: typing.Optional[str] = pydantic.Field(description=("The URL to the merchant's website.\n"))
     merchant_name: typing.Optional[str] = pydantic.Field(description=("The name of the merchant.\n"))

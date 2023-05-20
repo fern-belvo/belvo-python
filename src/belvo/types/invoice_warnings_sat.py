@@ -9,6 +9,10 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class InvoiceWarningsSat(pydantic.BaseModel):
+    """
+    Object containing information about any warnings related to this invoice.
+    """
+
     code: typing.Optional[str] = pydantic.Field(description=("The warning code.\n"))
     message: typing.Optional[str] = pydantic.Field(description=("The description of the warning.\n"))
 

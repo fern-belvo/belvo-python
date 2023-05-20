@@ -7,6 +7,12 @@ T_Result = typing.TypeVar("T_Result")
 
 
 class EnumTaxRetentionPaymentStatus(str, enum.Enum):
+    """
+    Indicates whether or not the tax has been paid or not. Can be either:
+      - `PAID`
+      - `PROVISIONED`
+    """
+
     PAID = "PAID"
     PROVISIONED = "PROVISIONED"
 

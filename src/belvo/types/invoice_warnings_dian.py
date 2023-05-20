@@ -9,6 +9,10 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class InvoiceWarningsDian(pydantic.BaseModel):
+    """
+    **Note**: This field is not applicable for DIAN Colombia and will return `null`.
+    """
+
     code: typing.Optional[str] = pydantic.Field(
         description=("**Note**: This field is not applicable for DIAN Colombia and will return `null`.\n")
     )

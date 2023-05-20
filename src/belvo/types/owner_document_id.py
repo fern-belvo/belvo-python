@@ -9,6 +9,10 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class OwnerDocumentId(pydantic.BaseModel):
+    """
+    Information regarding the identification document the owner provided to the bank.
+    """
+
     document_type: typing.Optional[str] = pydantic.Field(
         description=(
             "The type of document the owner provided to the institution to open the account. Common document types are:\n"

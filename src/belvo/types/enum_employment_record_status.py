@@ -7,6 +7,10 @@ T_Result = typing.TypeVar("T_Result")
 
 
 class EnumEmploymentRecordStatus(str, enum.Enum):
+    """
+    Indicates whether or not the individual is currently `EMPLOYED` or `UNEMPLOYED`.
+    """
+
     EMPLOYED = "EMPLOYED"
     UNEMPLOYED = "UNEMPLOYED"
 

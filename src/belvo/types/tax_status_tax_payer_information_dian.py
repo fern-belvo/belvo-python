@@ -9,6 +9,10 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class TaxStatusTaxPayerInformationDian(pydantic.BaseModel):
+    """
+    Details regarding the taxpayer.
+    """
+
     rfc: typing.Optional[str] = pydantic.Field(description=("The tax payers's identification number (NIT).\n"))
     curp: typing.Optional[str] = pydantic.Field(
         description=("**Note**: This field is not applicable for DIAN Colombia and will return `null`.\n")

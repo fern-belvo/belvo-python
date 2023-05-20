@@ -9,6 +9,10 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class RecurringExpenseSourceTransaction(pydantic.BaseModel):
+    """
+    An array of minified transaction objects used to evaluate the recurring expense. If no transactions were found, we return an empty array.
+    """
+
     amount: float = pydantic.Field(description=("The transaction amount.\n"))
     description: typing.Optional[str] = pydantic.Field(
         description=(

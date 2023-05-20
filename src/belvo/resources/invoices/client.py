@@ -137,16 +137,13 @@ class InvoicesClient:
         link: str,
         date_from: str,
         date_to: str,
-        type: EnumInvoiceType,
+        type: typing.Optional[EnumInvoiceType] = OMIT,
         attach_xml: typing.Optional[bool] = OMIT,
         save_data: typing.Optional[bool] = OMIT,
     ) -> typing.List[RetrieveInvoicesResponseItem]:
-        _request: typing.Dict[str, typing.Any] = {
-            "link": link,
-            "date_from": date_from,
-            "date_to": date_to,
-            "type": type,
-        }
+        _request: typing.Dict[str, typing.Any] = {"link": link, "date_from": date_from, "date_to": date_to}
+        if type is not OMIT:
+            _request["type"] = type
         if attach_xml is not OMIT:
             _request["attach_xml"] = attach_xml
         if save_data is not OMIT:
@@ -381,16 +378,13 @@ class AsyncInvoicesClient:
         link: str,
         date_from: str,
         date_to: str,
-        type: EnumInvoiceType,
+        type: typing.Optional[EnumInvoiceType] = OMIT,
         attach_xml: typing.Optional[bool] = OMIT,
         save_data: typing.Optional[bool] = OMIT,
     ) -> typing.List[RetrieveInvoicesResponseItem]:
-        _request: typing.Dict[str, typing.Any] = {
-            "link": link,
-            "date_from": date_from,
-            "date_to": date_to,
-            "type": type,
-        }
+        _request: typing.Dict[str, typing.Any] = {"link": link, "date_from": date_from, "date_to": date_to}
+        if type is not OMIT:
+            _request["type"] = type
         if attach_xml is not OMIT:
             _request["attach_xml"] = attach_xml
         if save_data is not OMIT:

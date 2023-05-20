@@ -9,6 +9,10 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class AccountsCreditData(pydantic.BaseModel):
+    """
+    The credit options associated with this account.
+    """
+
     credit_limit: typing.Optional[float] = pydantic.Field(
         description=("The maximum amount of credit the owner can receive.\n")
     )
